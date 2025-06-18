@@ -1,20 +1,60 @@
+
 import Head from "next/head";
 import Link from "next/link";
-import { IoMdCheckmarkCircleOutline, IoIosLock } from "react-icons/io";
-import { FaIndustry, FaChartLine, FaCogs, FaStar } from "react-icons/fa";
+import { IoMdCheckmarkCircleOutline, IoIosLock, IoMdArrowDropdown } from "react-icons/io";
+import { FaIndustry, FaChartLine, FaCogs, FaStar, FaPlug, FaMobileAlt, FaTools } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { FaPlug, FaMobileAlt, FaTools } from "react-icons/fa";
 import { useState } from "react";
 
 export default function ManufacturingSoftware() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeTab, setActiveTab] = useState("dashboard");
+  const [activeFaq, setActiveFaq] = useState(null); // State for FAQ dropdown
 
   const slides = [
     { src: "/img/1.jpg", alt: "ManuPro Dashboard" },
     { src: "/img/2.jpg", alt: "Inventory Management" },
     { src: "/img/3.jpg", alt: "Production Analytics" },
+  ];
+
+  const faqs = [
+    {
+      question: "What types of manufacturing software do you develop?",
+      answer: "We develop solutions for production planning, inventory management, quality control, analytics, and more.",
+    },
+    {
+      question: "Can I request custom features for my manufacturing needs?",
+      answer: "Yes, we offer tailor-made features to align with your specific manufacturing processes.",
+    },
+    {
+      question: "Is your software suitable for small manufacturers?",
+      answer: "Absolutely, our solutions are scalable for businesses of all sizes, including small manufacturers and startups.",
+    },
+    {
+      question: "What technologies do you use for manufacturing software?",
+      answer: "We use modern technologies like React, Node.js, Laravel, and cloud-based architectures for performance and scalability.",
+    },
+    {
+      question: "Does your software support mobile access?",
+      answer: "Yes, our manufacturing software includes mobile apps for managing operations on the go.",
+    },
+    {
+      question: "What is your pricing model for manufacturing software?",
+      answer: "We offer flexible pricing based on project scope, including fixed, milestone-based, or subscription models.",
+    },
+    {
+      question: "Do you provide ongoing support for the software?",
+      answer: "Yes, we offer maintenance, updates, and 24/7 customer support to ensure smooth operations.",
+    },
+    {
+      question: "How do you ensure data security in your software?",
+      answer: "We implement encryption, secure coding practices, and regular backups to protect your data.",
+    },
+    {
+      question: "Can your software integrate with existing systems?",
+      answer: "Yes, we support integrations with ERP, supply chain, accounting systems, and other third-party tools.",
+    },
   ];
 
   const staggerContainer = {
@@ -71,13 +111,17 @@ export default function ManufacturingSoftware() {
     transition: { duration: 0.8, ease: "easeOut" },
   };
 
+  const toggleFaq = (index) => {
+    setActiveFaq(activeFaq === index ? null : index);
+  };
+
   return (
     <>
       <Head>
-        <title>Manufacturing & Production Solutions</title>
+        <title>Manufacturing Software Development</title>
         <meta
           name="description"
-          content="Optimize manufacturing with ManuPro’s intuitive production management, inventory tracking, and analytics tools."
+          content="Inflame Solution Ltd is a leading manufacturing software development company in Bangladesh, delivering robust, scalable solutions to optimize production processes."
         />
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
@@ -97,10 +141,10 @@ export default function ManufacturingSoftware() {
               transition={{ duration: 1.2, ease: "easeOut" }}
             >
               <h1 className="h1">
-                Streamline Production with <span>ManuPro</span>
+                Best Manufacturing Software Company <span>in Bangladesh</span>
               </h1>
               <p className="p">
-                Enhance manufacturing efficiency with tools for production management, inventory control, and real-time analytics.
+                Inflame Solution Ltd is a leading manufacturing software development company in Bangladesh, delivering robust, scalable solutions to optimize production processes, streamline inventory, and enhance operational efficiency for manufacturers of all sizes.
               </p>
               <div className="hero-buttons">
                 <motion.a
@@ -147,9 +191,9 @@ export default function ManufacturingSoftware() {
         </section>
         <div className="headers">
           <span className="banner-text">
-            Best Software development company in Bangladesh
+            Premier Manufacturing Software Solutions in Bangladesh
           </span>
-          <Link href="contact">
+          <Link href="/contact">
             <span className="btn btn-secondary">Book for Demo</span>
           </Link>
         </div>
@@ -164,7 +208,7 @@ export default function ManufacturingSoftware() {
               whileInView="animate"
               viewport={{ once: true }}
             >
-              <h2 className="h1">Features That Transform Manufacturing</h2>
+              <h2 className="h1">Our Manufacturing Software Features</h2>
               <p className="p">
                 Equip your production team with tools for seamless operations, inventory management, and analytics.
               </p>
@@ -173,23 +217,13 @@ export default function ManufacturingSoftware() {
               {[
                 {
                   icon: <FaIndustry />,
-                  title: "Production Management",
-                  desc: "Plan, schedule, and monitor production workflows with ease.",
-                },
-                {
-                  icon: <FaChartLine />,
-                  title: "Manufacturing Analytics",
-                  desc: "Track KPIs and optimize processes with clear dashboards.",
+                  title: "Production Planning",
+                  desc: "Efficiently plan and schedule production workflows.",
                 },
                 {
                   icon: <FaTools />,
-                  title: "Inventory Control",
-                  desc: "Manage stock levels and automate material reordering.",
-                },
-                {
-                  icon: <FaMobileAlt />,
-                  title: "Mobile Access",
-                  desc: "Oversee production and inventory on the go with our mobile app.",
+                  title: "Inventory Management",
+                  desc: "Track materials and automate stock replenishment.",
                 },
                 {
                   icon: <FaCogs />,
@@ -197,19 +231,29 @@ export default function ManufacturingSoftware() {
                   desc: "Ensure product quality with integrated inspection tools.",
                 },
                 {
-                  icon: <IoIosLock />,
-                  title: "Secure Data",
-                  desc: "Protect sensitive production data with top-tier encryption.",
+                  icon: <FaChartLine />,
+                  title: "Real-Time Analytics",
+                  desc: "Monitor performance with actionable insights.",
+                },
+                {
+                  icon: <FaMobileAlt />,
+                  title: "Mobile Access",
+                  desc: "Manage operations anytime, anywhere with mobile apps.",
                 },
                 {
                   icon: <FaPlug />,
-                  title: "Seamless Integrations",
-                  desc: "Sync with ERP, supply chain, and accounting systems.",
+                  title: "System Integrations",
+                  desc: "Connect with ERP, CRM, and supply chain systems.",
+                },
+                {
+                  icon: <IoIosLock />,
+                  title: "Data Security",
+                  desc: "Protect sensitive data with advanced encryption.",
                 },
                 {
                   icon: <FaStar />,
-                  title: "Compliance Tracking",
-                  desc: "Ensure adherence to industry standards with automated reports.",
+                  title: "Compliance Management",
+                  desc: "Stay compliant with automated regulatory tracking.",
                 },
               ].map((feature, index) => (
                 <motion.div
@@ -244,7 +288,7 @@ export default function ManufacturingSoftware() {
               whileInView="animate"
               viewport={{ once: true }}
             >
-              <h2 className="h1">Why ManuPro Excels</h2>
+              <h2 className="h1">Why Choose Inflame as Your Manufacturing Software Partner?</h2>
               <p className="p">
                 Transform manufacturing operations with tools that boost efficiency, reduce waste, and ensure quality.
               </p>
@@ -258,7 +302,7 @@ export default function ManufacturingSoftware() {
                 viewport={{ once: true }}
               >
                 <Image
-                  src="/img/ex4.png"
+                  src="/img/manufacturing.jpg"
                   alt="ManuPro Benefits"
                   width={880}
                   height={450}
@@ -270,24 +314,32 @@ export default function ManufacturingSoftware() {
               <div className="benefits-list">
                 {[
                   {
-                    title: "Increase Efficiency",
-                    desc: "Automate workflows to streamline production processes.",
+                    title: "Experienced Development Team",
+                    desc: "Our skilled developers deliver reliable manufacturing solutions.",
                   },
                   {
-                    title: "Reduce Waste",
-                    desc: "Optimize inventory and production to minimize costs.",
+                    title: "Customizable Solutions",
+                    desc: "Tailored software to fit your unique production needs.",
                   },
                   {
-                    title: "Ensure Quality",
-                    desc: "Maintain high standards with integrated quality control.",
+                    title: "Cutting-Edge Technologies",
+                    desc: "Built with modern tech for performance and scalability.",
                   },
                   {
-                    title: "Stay Compliant",
-                    desc: "Meet industry regulations with automated compliance tools.",
+                    title: "Cost-Effective Pricing",
+                    desc: "Affordable solutions without compromising quality.",
                   },
                   {
-                    title: "Scale with Ease",
-                    desc: "Adapt to growing production needs with flexible tools.",
+                    title: "Timely Delivery",
+                    desc: "We ensure projects are completed on schedule.",
+                  },
+                  {
+                    title: "Robust Client Support",
+                    desc: "24/7 support to keep your operations running smoothly.",
+                  },
+                  {
+                    title: "Scalable Development",
+                    desc: "Software that grows with your manufacturing demands.",
                   },
                 ].map((benefit, index) => (
                   <motion.div
@@ -437,24 +489,10 @@ export default function ManufacturingSoftware() {
               </div>
 
               {/* Floating Request Demo Button */}
-              <Link href="/request-demo" legacyBehavior>
-                <motion.a
-                  className="btn btn-primary demo-request-btn"
-                  onClick={() => console.log("Request Demo clicked")}
-                  whileHover={{
-                    scale: 1.1,
-                    boxShadow: "0 8px 20px rgba(245, 158, 11, 0.4)",
-                  }}
-                  whileTap={{ scale: 0.95 }}
-                  animate={{ scale: [1, 1.03, 1] }}
-                  transition={{ repeat: Infinity, duration: 2 }}
-                >
-                  Request a Live Demo
-                </motion.a>
-              </Link>
+              
             </motion.div>
 
-            {/* FAQ Snippet */}
+            {/* Updated FAQ Section with Dropdown */}
             <motion.div
               className="demo-faq"
               variants={fadeIn}
@@ -462,19 +500,48 @@ export default function ManufacturingSoftware() {
               whileInView="animate"
               viewport={{ once: true }}
             >
-              <h4>Frequently Asked Questions</h4>
-              <div className="faq-item">
-                <h5>Is ManuPro compatible with mobile devices?</h5>
-                <p>
-                  Yes, ManuPro offers full mobile compatibility, allowing you to manage production and inventory from anywhere using our mobile app.
-                </p>
-              </div>
-              <div className="faq-item">
-                <h5>Can I integrate ManuPro with my existing systems?</h5>
-                <p>
-                  Absolutely. ManuPro supports seamless integrations with ERP, supply chain, and accounting platforms.
-                </p>
-              </div>
+              <h4>FAQs Manufacturing Software Development Services</h4>
+              {faqs.map((faq, index) => (
+                <motion.div
+                  key={index}
+                  className="faq-item"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <motion.div
+                    className="faq-question"
+                    onClick={() => toggleFaq(index)}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    style={{ cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "space-between" }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <IoMdCheckmarkCircleOutline className="faq-icon" style={{ marginRight: "10px" }} />
+                      <h5>{faq.question}</h5>
+                    </div>
+                    <motion.div
+                      animate={{ rotate: activeFaq === index ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <IoMdArrowDropdown className="faq-dropdown-icon" />
+                    </motion.div>
+                  </motion.div>
+                  <AnimatePresence>
+                    {activeFaq === index && (
+                      <motion.div
+                        className="faq-answer"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <p>{faq.answer}</p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              ))}
             </motion.div>
           </div>
         </section>
@@ -618,7 +685,7 @@ export default function ManufacturingSoftware() {
                       </li>
                     ))}
                   </ul>
-                  <Link href={plan.link} legacyBehavior>
+                  <Link href={plan.link}>
                     <motion.a
                       className={`btn ${plan.popular ? "btn-primary" : "btn-secondary"}`}
                       whileHover={{ scale: 1.05 }}
@@ -662,6 +729,9 @@ export default function ManufacturingSoftware() {
           </div>
         </section>
       </div>
+
+  
+     
     </>
   );
 }
