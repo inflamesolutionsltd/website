@@ -1,49 +1,92 @@
+
 import Head from "next/head";
 import Link from "next/link";
-import { IoMdCheckmarkCircleOutline, IoIosLock } from "react-icons/io";
-import { FaTicketAlt, FaChartLine, FaGift, FaStar } from "react-icons/fa";
+import { IoMdCheckmarkCircleOutline, IoMdArrowDropdown } from "react-icons/io";
+import { FaTicketAlt, FaUsers, FaHeadset, FaClock, FaTag, FaComment, FaChartLine, FaExclamationTriangle, FaUserShield, FaCloud, FaPlug, FaStar } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { FaUsers, FaPlug, FaMobileAlt } from "react-icons/fa";
 import { useState } from "react";
 
-export default function TicketingSoftware() {
+export default function InflameTicketing() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [activeTab, setActiveTab] = useState("dashboard");
+  const [activeTab, setActiveTab] = useState("ticket");
+  const [activeFaq, setActiveFaq] = useState(null);
 
   const slides = [
-    { src: "/img/img1.gif", alt: "TicketPro Dashboard" },
-    { src: "/img/ticket-assignment.jpg", alt: "Ticket Assignment" },
-    { src: "/img/analytics-reports.jpg", alt: "Analytics Reports" },
+    { src: "/img/tick.gif", alt: "Inflame Ticketing System" },
+  ];
+
+  const faqs = [
+    {
+      question: "✅ What is Inflame Ticketing System Software?",
+      answer: "It’s a centralized platform to manage support queries, assign tasks, track status, and improve issue resolution.",
+    },
+    {
+      question: "✅ Who can use this software?",
+      answer: "Ideal for IT companies, call centers, corporate support teams, agencies, and e-commerce businesses in Bangladesh.",
+    },
+    {
+      question: "✅ Is it cloud-based?",
+      answer: "Yes, fully cloud-based and accessible 24/7 from any device.",
+    },
+    {
+      question: "✅ Can I assign tickets to specific agents?",
+      answer: "Yes, you can manually or automatically assign tickets based on departments, workload, or skills.",
+    },
+    {
+      question: "✅ Does it support multi-channel ticketing?",
+      answer: "Yes! It handles email, web forms, chat, and phone ticket requests in one dashboard.",
+    },
+    {
+      question: "✅ Can I track SLA and escalation?",
+      answer: "Absolutely! Monitor response time, resolution deadlines, and auto-escalate when needed.",
+    },
+    {
+      question: "✅ Is there a client support portal?",
+      answer: "Yes, clients can raise and track tickets from their own dashboard.",
+    },
+    {
+      question: "✅ Does it track team performance?",
+      answer: "Yes, get full analytics on response time, agent productivity, and ticket volume.",
+    },
+    {
+      question: "✅ Can I customize categories and tags?",
+      answer: "Yes, organize tickets with customizable fields, tags, and categories.",
+    },
+    {
+      question: "✅ Is there mobile access?",
+      answer: "Yes, agents can view and manage tickets on the go via mobile or tablet.",
+    },
+    {
+      question: "✅ Can I integrate it with my website or CRM?",
+      answer: "Yes, it's built to integrate with existing CRM, ERP, or any third-party tools.",
+    },
+    {
+      question: "✅ What kind of support do you offer?",
+      answer: "We offer onboarding training, live support, and regular updates backed by a dedicated team.",
+    },
   ];
 
   const staggerContainer = {
     initial: {},
-    animate: {
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
+    animate: { transition: { staggerChildren: 0.2 } },
   };
 
   const tabs = [
     {
-      id: "dashboard",
-      title: "Support Dashboard",
-      content:
-        "Monitor tickets, assign tasks, and track resolutions with a real-time, intuitive dashboard.",
+      id: "ticket",
+      title: "Ticket Management",
+      content: "Create, assign, and track tickets with real-time status updates.",
     },
     {
-      id: "automation",
-      title: "Ticket Automation",
-      content:
-        "Automate ticket routing, prioritization, and follow-ups for faster resolutions.",
+      id: "multichannel",
+      title: "Multi-Channel Support",
+      content: "Manage tickets from email, chat, website, or phone in one platform.",
     },
     {
       id: "analytics",
-      title: "Performance Analytics",
-      content:
-        "Generate detailed reports to analyze team performance and customer satisfaction.",
+      title: "Performance Dashboard",
+      content: "Analyze agent performance and ticket metrics with visual reports.",
     },
   ];
 
@@ -71,13 +114,17 @@ export default function TicketingSoftware() {
     transition: { duration: 0.8, ease: "easeOut" },
   };
 
+  const toggleFaq = (index) => {
+    setActiveFaq(activeFaq === index ? null : index);
+  };
+
   return (
     <>
       <Head>
-        <title>Ticketing & Support Solutions</title>
+        <title>Inflame - Best Ticketing System Software</title>
         <meta
           name="description"
-          content="Streamline customer support with TicketPro’s intuitive ticketing system, automated workflows, and analytics tools."
+          content="Streamline customer service with Inflame’s ticketing software, featuring ticket management, multi-channel support, and performance analytics."
         />
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
@@ -87,7 +134,6 @@ export default function TicketingSoftware() {
       </Head>
 
       <div className="pos-software">
-        {/* Hero Section */}
         <section className="hero">
           <div className="container">
             <motion.div
@@ -97,19 +143,16 @@ export default function TicketingSoftware() {
               transition={{ duration: 1.2, ease: "easeOut" }}
             >
               <h1 className="h1">
-                Elevate Support with <span>TicketPro</span>
+                Best Ticketing System Software <span>in Bangladesh</span>
               </h1>
               <p className="p">
-                Simplify ticket management, automate workflows, and gain insights with tools designed to enhance support efficiency and customer satisfaction.
+                Inflame Ticketing System Software offers a smart and organized solution to manage customer service, internal IT support, or issue tracking. Whether you're a small business or a large enterprise, it’s the best ticketing system software in Bangladesh for managing queries, assigning tasks, and tracking resolution, efficiently and professionally.
               </p>
               <div className="hero-buttons">
                 <motion.a
                   href="#features"
                   className="btn btn-primary"
-                  whileHover={{
-                    scale: 1.1,
-                    boxShadow: "0 8px 20px rgba(245, 158, 11, 0.3)",
-                  }}
+                  whileHover={{ scale: 1.1, boxShadow: "0 8px 20px rgba(245, 158, 11, 0.3)" }}
                   whileTap={{ scale: 0.95 }}
                 >
                   Discover Features
@@ -117,10 +160,7 @@ export default function TicketingSoftware() {
                 <motion.a
                   href="#demo"
                   className="btn btn-secondary"
-                  whileHover={{
-                    scale: 1.1,
-                    boxShadow: "0 8px 20px rgba(244, 63, 94, 0.3)",
-                  }}
+                  whileHover={{ scale: 1.1, boxShadow: "0 8px 20px rgba(244, 63, 94, 0.3)" }}
                   whileTap={{ scale: 0.95 }}
                 >
                   Watch Demo
@@ -134,8 +174,8 @@ export default function TicketingSoftware() {
               animate="animate"
             >
               <Image
-                src="/img/ticket-hero.png"
-                alt="TicketPro Dashboard"
+                src="/img/ticketing.png"
+                alt="Inflame Ticketing Dashboard"
                 width={1000}
                 height={550}
                 style={{ objectFit: "contain" }}
@@ -147,14 +187,13 @@ export default function TicketingSoftware() {
         </section>
         <div className="headers">
           <span className="banner-text">
-            Best Software development company in Bangladesh
+            Premier Ticketing Software Solutions in Bangladesh
           </span>
-          <Link href="contact">
+          <Link href="/contact" legacyBehavior>
             <span className="btn btn-secondary">Book for Demo</span>
           </Link>
         </div>
 
-        {/* Features Section */}
         <section className="features section-padding" id="features">
           <div className="container">
             <motion.div
@@ -164,53 +203,52 @@ export default function TicketingSoftware() {
               whileInView="animate"
               viewport={{ once: true }}
             >
-              <h2 className="h1">Features That Transform Support</h2>
-              <p className="p">
-                Equip your support team with tools for seamless ticket management, automation, and analytics.
-              </p>
+              <h2 className="h1">Key Features of Inflame Ticketing Software</h2>
             </motion.div>
             <div className="feature-grid">
               {[
                 {
                   icon: <FaTicketAlt />,
-                  title: "Ticket Automation",
-                  desc: "Automate ticket routing and prioritization for faster resolutions.",
-                },
-                {
-                  icon: <FaChartLine />,
-                  title: "Support Analytics",
-                  desc: "Track team performance and customer satisfaction with clear dashboards.",
+                  title: "Ticket Management",
+                  desc: "Create, assign, and prioritize tickets with real-time tracking and status updates.",
                 },
                 {
                   icon: <FaUsers />,
-                  title: "Team Collaboration",
-                  desc: "Enable seamless communication and task assignment for your support team.",
+                  title: "Department & Agent Assignment",
+                  desc: "Route tickets to relevant departments or agents automatically for faster resolution.",
                 },
                 {
-                  icon: <FaMobileAlt />,
-                  title: "Mobile Access",
-                  desc: "Manage tickets on the go with our mobile app.",
+                  icon: <FaHeadset />,
+                  title: "Multi-Channel Support",
+                  desc: "Receive and manage support tickets from email, chat, website, or phone—centralized in one platform.",
                 },
                 {
-                  icon: <FaGift />,
-                  title: "Customer Portal",
-                  desc: "Provide customers with a self-service portal for ticket tracking.",
+                  icon: <FaClock />,
+                  title: "SLA (Service Level Agreement) Tracking",
+                  desc: "Monitor ticket resolution timelines and ensure compliance with SLA policies.",
                 },
                 {
-                  icon: <IoIosLock />,
-                  title: "Secure Data",
-                  desc: "Protect sensitive customer data with top-tier encryption.",
+                  icon: <FaTag />,
+                  title: "Custom Tags & Categories",
+                  desc: "Organize tickets using custom tags and categories for easier tracking.",
                 },
                 {
-                  icon: <FaPlug />,
-                  title: "Seamless Integrations",
-                  desc: "Sync with CRM, chat, and email platforms.",
+                  icon: <FaComment />,
+                  title: "Customer Communication Portal",
+                  desc: "Let customers raise tickets, check status, and communicate directly from the support portal.",
                 },
                 {
-                  icon: <FaStar />,
-                  title: "SLA Management",
-                  desc: "Ensure timely responses with automated SLA tracking.",
+                  icon: <FaChartLine />,
+                  title: "Performance Dashboard & Analytics",
+                  desc: "Measure agent performance, resolution time, ticket volume, and more with visual reports.",
                 },
+                {
+                  icon: <FaExclamationTriangle />,
+                  title: "Priority & Escalation Rules",
+                  desc: "Automatically escalate critical issues or overdue tickets based on priority.",
+                },
+                
+                
               ].map((feature, index) => (
                 <motion.div
                   key={index}
@@ -220,10 +258,7 @@ export default function TicketingSoftware() {
                   whileInView="animate"
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.15 }}
-                  whileHover={{
-                    y: -10,
-                    boxShadow: "0 15px 30px rgba(0,0,0,0.15)",
-                  }}
+                  whileHover={{ y: -10, boxShadow: "0 15px 30px rgba(0,0,0,0.15)" }}
                 >
                   <div className="icon-wrapper">{feature.icon}</div>
                   <h3>{feature.title}</h3>
@@ -231,10 +266,9 @@ export default function TicketingSoftware() {
                 </motion.div>
               ))}
             </div>
-          </div>
+            </div>
         </section>
 
-        {/* Benefits Section */}
         <section className="benefits section-padding" id="benefits">
           <div className="container">
             <motion.div
@@ -244,10 +278,7 @@ export default function TicketingSoftware() {
               whileInView="animate"
               viewport={{ once: true }}
             >
-              <h2 className="h1">Why TicketPro Excels</h2>
-              <p className="p">
-                Transform support operations with tools that save time, improve efficiency, and delight customers.
-              </p>
+              <h2 className="h1">Why You Need the Best Ticketing System Software?</h2>
             </motion.div>
             <div className="benefits-grid">
               <motion.div
@@ -258,8 +289,8 @@ export default function TicketingSoftware() {
                 viewport={{ once: true }}
               >
                 <Image
-                  src="/img/img2.gif"
-                  alt="TicketPro Benefits"
+                  src="/img/ticket.jpg"
+                  alt="Ticketing Benefits"
                   width={880}
                   height={450}
                   style={{ objectFit: "contain" }}
@@ -270,24 +301,36 @@ export default function TicketingSoftware() {
               <div className="benefits-list">
                 {[
                   {
-                    title: "Save Time",
-                    desc: "Automate ticket workflows to focus on customer satisfaction.",
+                    title: "Centralized support management",
+                    desc: "Streamline all support activities in one platform.",
                   },
                   {
-                    title: "Improve Efficiency",
-                    desc: "Streamline ticket handling with intelligent automation.",
+                    title: "Faster response and resolution",
+                    desc: "Quickly address customer queries to boost satisfaction.",
                   },
                   {
-                    title: "Stay Organized",
-                    desc: "Track and manage tickets with a centralized dashboard.",
+                    title: "Improved customer journey",
+                    desc: "Enhance the support experience with seamless communication.",
                   },
                   {
-                    title: "Delight Customers",
-                    desc: "Provide fast, personalized support with self-service options.",
+                    title: "Organized task delegation",
+                    desc: "Assign tasks efficiently to the right teams or agents.",
                   },
                   {
-                    title: "Scale with Ease",
-                    desc: "Grow your support team with tools that adapt to your needs.",
+                    title: "Real-time performance tracking",
+                    desc: "Monitor team performance with live analytics.",
+                  },
+                  {
+                    title: "Better communication with clients",
+                    desc: "Maintain clear and professional client interactions.",
+                  },
+                  {
+                    title: "Flexible for all business types",
+                    desc: "Adaptable to small businesses and large enterprises alike.",
+                  },
+                  {
+                    title: "Reduces manual work and hassle",
+                    desc: "Automate processes to save time and reduce errors.",
                   },
                 ].map((benefit, index) => (
                   <motion.div
@@ -311,7 +354,6 @@ export default function TicketingSoftware() {
           </div>
         </section>
 
-        {/* Demo Section */}
         <section className="demo-section section-padding" id="demo">
           <div className="container">
             <motion.div
@@ -321,9 +363,9 @@ export default function TicketingSoftware() {
               whileInView="animate"
               viewport={{ once: true }}
             >
-              <h2>Experience TicketPro in Action</h2>
+              <h2>Why Choose Ticketing Software</h2>
               <p className="p">
-                Discover TicketPro’s ticketing system through an interactive demo. See how our support dashboard, ticket automation, and analytics streamline your operations.
+                See Inflame’s ticketing software in action. Experience how ticket management, multi-channel support, and performance analytics enhance your customer service.
               </p>
             </motion.div>
             <motion.div
@@ -334,7 +376,6 @@ export default function TicketingSoftware() {
               viewport={{ once: true }}
             >
               <div className="demo-grid">
-                {/* Carousel */}
                 <motion.div
                   className="demo-carousel"
                   variants={slideLeft}
@@ -375,7 +416,6 @@ export default function TicketingSoftware() {
                   </div>
                 </motion.div>
 
-                {/* Tabs and Content */}
                 <motion.div
                   className="demo-content"
                   variants={slideRight}
@@ -419,9 +459,9 @@ export default function TicketingSoftware() {
                     animate="animate"
                   >
                     {[
-                      "Effortless ticket management with a sleek interface",
-                      "Fast ticket resolution with real-time automation",
-                      "Seamless integration with your support ecosystem",
+                      "Efficient ticket management with real-time updates",
+                      "Unified support across email, chat, and web",
+                      "Actionable insights with performance analytics",
                     ].map((benefit, index) => (
                       <motion.div
                         key={index}
@@ -436,25 +476,9 @@ export default function TicketingSoftware() {
                 </motion.div>
               </div>
 
-              {/* Floating Request Demo Button */}
-              <Link href="/request-demo" legacyBehavior>
-                <motion.a
-                  className="btn btn-primary demo-request-btn"
-                  onClick={() => console.log("Request Demo clicked")}
-                  whileHover={{
-                    scale: 1.1,
-                    boxShadow: "0 8px 20px rgba(245, 158, 11, 0.4)",
-                  }}
-                  whileTap={{ scale: 0.95 }}
-                  animate={{ scale: [1, 1.03, 1] }}
-                  transition={{ repeat: Infinity, duration: 2 }}
-                >
-                  Request a Live Demo
-                </motion.a>
-              </Link>
+              
             </motion.div>
 
-            {/* FAQ Snippet */}
             <motion.div
               className="demo-faq"
               variants={fadeIn}
@@ -462,24 +486,52 @@ export default function TicketingSoftware() {
               whileInView="animate"
               viewport={{ once: true }}
             >
-              <h4>Frequently Asked Questions</h4>
-              <div className="faq-item">
-                <h5>Is TicketPro compatible with mobile devices?</h5>
-                <p>
-                  Yes, TicketPro offers full mobile compatibility, allowing you to manage tickets from anywhere using our mobile app.
-                </p>
-              </div>
-              <div className="faq-item">
-                <h5>Can I integrate TicketPro with my existing systems?</h5>
-                <p>
-                  Absolutely. TicketPro supports seamless integrations with CRM, chat, and email platforms.
-                </p>
-              </div>
+              <h4>FAQs Inflame Ticketing System Software</h4>
+              {faqs.map((faq, index) => (
+                <motion.div
+                  key={index}
+                  className="faq-item"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <motion.div
+                    className="faq-question"
+                    onClick={() => toggleFaq(index)}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    style={{ cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "space-between" }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <IoMdCheckmarkCircleOutline className="faq-icon" style={{ marginRight: "10px" }} />
+                      <h5>{faq.question.replace("✅", "")}</h5>
+                    </div>
+                    <motion.div
+                      animate={{ rotate: activeFaq === index ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <IoMdArrowDropdown className="faq-dropdown-icon" />
+                    </motion.div>
+                  </motion.div>
+                  <AnimatePresence>
+                    {activeFaq === index && (
+                      <motion.div
+                        className="faq-answer"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <p>{faq.answer}</p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              ))}
             </motion.div>
           </div>
         </section>
 
-        {/* Testimonials Section */}
         <section className="testimonials section-padding" id="testimonials">
           <div className="container">
             <motion.div
@@ -490,27 +542,24 @@ export default function TicketingSoftware() {
               viewport={{ once: true }}
             >
               <h2>Voices from Support Leaders</h2>
-              <p>Hear from support professionals thriving with TicketPro’s solutions.</p>
+              <p>Hear from businesses thriving with Inflame’s ticketing solutions.</p>
             </motion.div>
             <div className="testimonials-grid">
               {[
                 {
-                  name: "Sarah Johnson",
+                  name: "Ayesha Khan",
                   role: "Support Manager",
-                  quote:
-                    "TicketPro’s automation has slashed our response times. It’s a game-changer!",
+                  quote: "Inflame’s multi-channel support streamlined our customer service process.",
                 },
                 {
-                  name: "David Lee",
-                  role: "Customer Success Lead",
-                  quote:
-                    "The analytics dashboards help us stay on top of team performance effortlessly.",
+                  name: "Rahim Hossain",
+                  role: "IT Manager",
+                  quote: "The performance dashboard helped us improve response times significantly.",
                 },
                 {
-                  name: "Priya Sharma",
-                  role: "Support Director",
-                  quote:
-                    "Managing tickets across channels is seamless with TicketPro’s dashboard.",
+                  name: "Sofia Rahman",
+                  role: "Customer Service Lead",
+                  quote: "Ticket management and SLA tracking made our support team more efficient.",
                 },
               ].map((testimonial, index) => (
                 <motion.div
@@ -521,10 +570,7 @@ export default function TicketingSoftware() {
                   whileInView="animate"
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.2 }}
-                  whileHover={{
-                    y: -10,
-                    boxShadow: "0 15px 30px rgba(0,0,0,0.15)",
-                  }}
+                  whileHover={{ y: -10, boxShadow: "0 15px 30px rgba(0,0,0,0.15)" }}
                 >
                   <FaStar className="star-icon" />
                   <p className="quote">“{testimonial.quote}”</p>
@@ -536,7 +582,6 @@ export default function TicketingSoftware() {
           </div>
         </section>
 
-        {/* Pricing Section */}
         {/* <section className="pricing section-padding" id="pricing">
           <div className="container">
             <motion.div
@@ -546,31 +591,25 @@ export default function TicketingSoftware() {
               whileInView="animate"
               viewport={{ once: true }}
             >
-              <h2>Choose Your Support Plan</h2>
-              <p>Flexible pricing to streamline your ticketing and support operations.</p>
+              <h2>Choose Your Inflame Plan</h2>
+              <p>Flexible pricing to suit your ticketing needs.</p>
             </motion.div>
             <div className="pricing-grid">
               {[
                 {
                   name: "Starter",
                   price: "$29",
-                  features: [
-                    "Up to 5 Agents",
-                    "Basic Ticketing",
-                    "Standard Reports",
-                    "Email Support",
-                  ],
+                  features: ["Ticket Management", "Multi-Channel Support", "SLA Tracking", "Email Support"],
                   link: "/pricing/starter",
                   cta: "Get Started",
                 },
                 {
                   name: "Growth",
-                  price: "$79",
+                  price: "$99",
                   features: [
-                    "Up to 20 Agents",
-                    "Automation Rules",
-                    "SLA Management",
-                    "Integrations",
+                    "All Starter Features",
+                    "Department & Agent Assignment",
+                    "Performance Dashboard",
                     "Priority Support",
                   ],
                   link: "/pricing/growth",
@@ -581,11 +620,11 @@ export default function TicketingSoftware() {
                   name: "Enterprise",
                   price: "Custom",
                   features: [
-                    "Unlimited Agents",
                     "All Growth Features",
-                    "Dedicated Manager",
-                    "Custom Integrations",
-                    "24/7 Support",
+                    "Custom Tags & Categories",
+                    "Customer Communication Portal",
+                    "Priority & Escalation Rules",
+                    "CRM Integration",
                   ],
                   link: "/contact",
                   cta: "Contact Us",
@@ -599,10 +638,7 @@ export default function TicketingSoftware() {
                   whileInView="animate"
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.2 }}
-                  whileHover={{
-                    scale: 1.05,
-                    boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
-                  }}
+                  whileHover={{ scale: 1.05, boxShadow: "0 20px 20px rgba(0,0,0,0.15)" }}
                 >
                   {plan.popular && <span className="popular-badge">Most Popular</span>}
                   <h3>{plan.name}</h3>
@@ -633,34 +669,7 @@ export default function TicketingSoftware() {
           </div>
         </section> */}
 
-        {/* CTA Section */}
-        <section className="cta section-padding">
-          <div className="container">
-            <motion.div
-              className="cta-content"
-              variants={fadeIn}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true }}
-            >
-              <h2>Ready to Transform Support?</h2>
-              <p>
-                Start your free trial and let TicketPro simplify ticketing, automation, and analytics for your team.
-              </p>
-              <motion.a
-                href="/signup"
-                className="btn btn-primary cta-btn"
-                whileHover={{
-                  scale: 1.1,
-                  boxShadow: "0 8px 20px rgba(245, 158, 11, 0.3)",
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Try for Free
-              </motion.a>
-            </motion.div>
-          </div>
-        </section>
+       
       </div>
     </>
   );

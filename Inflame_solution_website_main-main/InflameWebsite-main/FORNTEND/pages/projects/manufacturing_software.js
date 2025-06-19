@@ -13,9 +13,9 @@ export default function ManufacturingSoftware() {
   const [activeFaq, setActiveFaq] = useState(null); // State for FAQ dropdown
 
   const slides = [
-    { src: "/img/1.jpg", alt: "ManuPro Dashboard" },
-    { src: "/img/2.jpg", alt: "Inventory Management" },
-    { src: "/img/3.jpg", alt: "Production Analytics" },
+    { src: "/img/manu.png", alt: "ManuPro Dashboard" },
+    // { src: "/img/2.jpg", alt: "Inventory Management" },
+    // { src: "/img/3.jpg", alt: "Production Analytics" },
   ];
 
   const faqs = [
@@ -700,34 +700,8 @@ export default function ManufacturingSoftware() {
           </div>
         </section> */}
 
-        {/* CTA Section */}
-        <section className="cta section-padding">
-          <div className="container">
-            <motion.div
-              className="cta-content"
-              variants={fadeIn}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true }}
-            >
-              <h2>Ready to Transform Manufacturing?</h2>
-              <p>
-                Start your free trial and let ManuPro simplify production, inventory, and analytics for your team.
-              </p>
-              <motion.a
-                href="/signup"
-                className="btn btn-primary cta-btn"
-                whileHover={{
-                  scale: 1.1,
-                  boxShadow: "0 8px 20px rgba(245, 158, 11, 0.3)",
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Try for Free
-              </motion.a>
-            </motion.div>
-          </div>
-        </section>
+     
+        
       </div>
 
   

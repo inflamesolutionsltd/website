@@ -1,49 +1,83 @@
 import Head from "next/head";
 import Link from "next/link";
-import { IoMdCheckmarkCircleOutline, IoIosLock } from "react-icons/io";
-import { FaCashRegister, FaChartLine,FaMoneyCheckAlt,FaBuilding,FaFileAlt,FaCloud, FaGift,FaClock, FaStar } from "react-icons/fa";
+import { IoMdCheckmarkCircleOutline, IoMdArrowDropdown, IoIosLock } from "react-icons/io";
+import { FaCashRegister, FaChartLine, FaMoneyCheckAlt, FaBuilding, FaFileAlt, FaCloud, FaGift, FaClock, FaStar, FaUsers, FaPlug } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { FaUsers, FaPlug, FaMobileAlt } from "react-icons/fa";
 import { useState } from "react";
 
 export default function HRSoftware() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [activeTab, setActiveTab] = useState("dashboard");
+  const [activeTab, setActiveTab] = useState("employee");
+  const [activeFaq, setActiveFaq] = useState(null);
 
   const slides = [
-    { src: "/img/hr.gif", alt: "HRPro Dashboard" },
-    { src: "/img/payroll-processing.jpg", alt: "Payroll Automation" },
-    { src: "/img/compliance-reports.jpg", alt: "Compliance Reports" },
+    { src: "/img/hr.gif", alt: "Inflame HR System" },
+  ];
+
+  const faqs = [
+    {
+      question: "✅ What is Inflame HR & Payroll Software?",
+      answer: "It’s a complete solution for managing employee records, payroll, attendance, and compliance in one platform, and much more.",
+    },
+    {
+      question: "✅ Who should use this software?",
+      answer: "Ideal for companies of any size, retail, manufacturing, corporate offices, and multi-branch businesses in Bangladesh.",
+    },
+    {
+      question: "✅ Is it cloud-based?",
+      answer: "Yes, it’s a cloud-based system accessible from any device, anywhere in the world.",
+    },
+    {
+      question: "✅ Can it automate salary processing?",
+      answer: "Absolutely! It calculates salaries, bonuses, overtime, taxes, and deductions automatically.",
+    },
+    {
+      question: "✅ Does it support attendance devices?",
+      answer: "Yes, it integrates with biometric attendance machines for accurate tracking.",
+    },
+    {
+      question: "✅ Is it compliant with Bangladeshi tax laws?",
+      answer: "Yes, it is fully compliant with Bangladesh’s payroll and tax regulations format of NRB.",
+    },
+    {
+      question: "✅ Is payslip generation automatic?",
+      answer: "Yes, you can generate and download payslips for each employee with one click.",
+    },
+    {
+      question: "✅ Does it offer performance management?",
+      answer: "Yes, you can monitor and evaluate employee performance and appraisals.",
+    },
+    {
+      question: "✅ Is it user-friendly?",
+      answer: "Yes, designed for HR and finance teams with no technical expertise required.",
+    },
+    {
+      question: "✅ What kind of support is available?",
+      answer: "We provide training, live support, and regular updates for smooth operation, as well as 7/24 support.",
+    },
   ];
 
   const staggerContainer = {
     initial: {},
-    animate: {
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
+    animate: { transition: { staggerChildren: 0.2 } },
   };
 
   const tabs = [
     {
-      id: "dashboard",
-      title: "Employee Dashboard",
-      content:
-        "Manage employee profiles, track performance, and streamline HR tasks with an intuitive, real-time dashboard.",
+      id: "employee",
+      title: "Employee Database Management",
+      content: "Store and manage all employee records in one central platform.",
     },
     {
       id: "payroll",
-      title: "Payroll Automation",
-      content:
-        "Automate payroll calculations, tax deductions, and direct deposits for fast, error-free processing.",
+      title: "Automated Payroll Processing",
+      content: "Easily generate salaries with auto calculation of taxes, benefits, and deductions.",
     },
     {
-      id: "compliance",
-      title: "Compliance Reports",
-      content:
-        "Generate detailed reports to ensure compliance with labor laws and regulations, all in a few clicks.",
+      id: "attendance",
+      title: "Attendance & Leave Management",
+      content: "Track daily attendance, holidays, paid leave requests, and sick leave.",
     },
   ];
 
@@ -71,6 +105,10 @@ export default function HRSoftware() {
     transition: { duration: 0.8, ease: "easeOut" },
   };
 
+  const toggleFaq = (index) => {
+    setActiveFaq(activeFaq === index ? null : index);
+  };
+
   return (
     <>
       <Head>
@@ -87,7 +125,6 @@ export default function HRSoftware() {
       </Head>
 
       <div className="pos-software">
-        {/* Hero Section */}
         <section className="hero">
           <div className="container">
             <motion.div
@@ -103,16 +140,12 @@ export default function HRSoftware() {
                 Inflame HR & Payroll Software offers efficient employee management, automated salary processing, tax
                 calculation, attendance tracking, and seamless integration, perfect payroll and human resources software for
                 businesses in Bangladesh.
-
               </p>
               <div className="hero-buttons">
                 <motion.a
                   href="#features"
                   className="btn btn-primary"
-                  whileHover={{
-                    scale: 1.1,
-                    boxShadow: "0 8px 20px rgba(245, 158, 11, 0.3)",
-                  }}
+                  whileHover={{ scale: 1.1, boxShadow: "0 8px 20px rgba(245, 158, 11, 0.3)" }}
                   whileTap={{ scale: 0.95 }}
                 >
                   Discover Features
@@ -120,10 +153,7 @@ export default function HRSoftware() {
                 <motion.a
                   href="#demo"
                   className="btn btn-secondary"
-                  whileHover={{
-                    scale: 1.1,
-                    boxShadow: "0 8px 20px rgba(244, 63, 94, 0.3)",
-                  }}
+                  whileHover={{ scale: 1.1, boxShadow: "0 8px 20px rgba(244, 63, 94, 0.3)" }}
                   whileTap={{ scale: 0.95 }}
                 >
                   Watch Demo
@@ -150,14 +180,13 @@ export default function HRSoftware() {
         </section>
         <div className="headers">
           <span className="banner-text">
-            Best Software development company in Bangladesh
+            Premier HR & Payroll Software Solutions in Bangladesh
           </span>
-          <Link href="contact">
+          <Link href="/contact" legacyBehavior>
             <span className="btn btn-secondary">Book for Demo</span>
           </Link>
         </div>
 
-        {/* Features Section */}
         <section className="features section-padding" id="features">
           <div className="container">
             <motion.div
@@ -168,9 +197,6 @@ export default function HRSoftware() {
               viewport={{ once: true }}
             >
               <h2 className="h1">Features That Transform HR</h2>
-              <p className="p">
-                Equip your HR team with tools for seamless employee management, payroll, and compliance.
-              </p>
             </motion.div>
             <div className="feature-grid">
               {[
@@ -243,10 +269,7 @@ export default function HRSoftware() {
                   whileInView="animate"
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.15 }}
-                  whileHover={{
-                    y: -10,
-                    boxShadow: "0 15px 30px rgba(0,0,0,0.15)",
-                  }}
+                  whileHover={{ y: -10, boxShadow: "0 15px 30px rgba(0,0,0,0.15)" }}
                 >
                   <div className="icon-wrapper">{feature.icon}</div>
                   <h3>{feature.title}</h3>
@@ -257,7 +280,6 @@ export default function HRSoftware() {
           </div>
         </section>
 
-        {/* Benefits Section */}
         <section className="benefits section-padding" id="benefits">
           <div className="container">
             <motion.div
@@ -267,11 +289,7 @@ export default function HRSoftware() {
               whileInView="animate"
               viewport={{ once: true }}
             >
-              <h2 className="h1">Why You Need the Best HR and Payroll Software.
-              </h2>
-              {/* <p className="p">
-                Transform HR operations with tools that save time, ensure accuracy, and empower your team.
-              </p> */}
+              <h2 className="h1">Why You Need the Best HR and Payroll Software.</h2>
             </motion.div>
             <div className="benefits-grid">
               <motion.div
@@ -312,10 +330,11 @@ export default function HRSoftware() {
                   {
                     title: "Real-Time Reports",
                     desc: "Grow your workforce with tools that adapt to your needs.",
-                  }, {
+                  },
+                  {
                     title: "Scale with Ease",
                     desc: "Grow your workforce with tools that adapt to your needs.",
-                  }
+                  },
                 ].map((benefit, index) => (
                   <motion.div
                     key={index}
@@ -338,7 +357,6 @@ export default function HRSoftware() {
           </div>
         </section>
 
-        {/* Demo Section */}
         <section className="demo-section section-padding" id="demo">
           <div className="container">
             <motion.div
@@ -361,7 +379,6 @@ export default function HRSoftware() {
               viewport={{ once: true }}
             >
               <div className="demo-grid">
-                {/* Carousel */}
                 <motion.div
                   className="demo-carousel"
                   variants={slideLeft}
@@ -402,7 +419,6 @@ export default function HRSoftware() {
                   </div>
                 </motion.div>
 
-                {/* Tabs and Content */}
                 <motion.div
                   className="demo-content"
                   variants={slideRight}
@@ -446,9 +462,9 @@ export default function HRSoftware() {
                     animate="animate"
                   >
                     {[
-                      "Effortless HR management with a sleek interface",
-                      "Accurate payroll processing in real time",
-                      "Seamless integration with your HR ecosystem",
+                      "Centralized employee management",
+                      "Accurate payroll automation",
+                      "Seamless attendance tracking",
                     ].map((benefit, index) => (
                       <motion.div
                         key={index}
@@ -463,15 +479,11 @@ export default function HRSoftware() {
                 </motion.div>
               </div>
 
-              {/* Floating Request Demo Button */}
               <Link href="/request-demo" legacyBehavior>
                 <motion.a
                   className="btn btn-primary demo-request-btn"
                   onClick={() => console.log("Request Demo clicked")}
-                  whileHover={{
-                    scale: 1.1,
-                    boxShadow: "0 8px 20px rgba(245, 158, 11, 0.4)",
-                  }}
+                  whileHover={{ scale: 1.1, boxShadow: "0 8px 20px rgba(245, 158, 11, 0.4)" }}
                   whileTap={{ scale: 0.95 }}
                   animate={{ scale: [1, 1.03, 1] }}
                   transition={{ repeat: Infinity, duration: 2 }}
@@ -481,7 +493,6 @@ export default function HRSoftware() {
               </Link>
             </motion.div>
 
-            {/* FAQ Snippet */}
             <motion.div
               className="demo-faq"
               variants={fadeIn}
@@ -490,58 +501,51 @@ export default function HRSoftware() {
               viewport={{ once: true }}
             >
               <h4>Frequently Asked Questions</h4>
-              {[
-                {
-                  question: "What is Inflame HR & Payroll Software?",
-                  answer: "It’s a complete solution for managing employee records, payroll, attendance, and compliance in one platform, and much more."
-                },
-                {
-                  question: "Who should use this software?",
-                  answer: "Ideal for companies of any size, retail, manufacturing, corporate offices, and multi-branch businesses in Bangladesh."
-                },
-                {
-                  question: "Is it cloud-based?",
-                  answer: "Yes, it’s a cloud-based system accessible from any device, anywhere in the world."
-                },
-                {
-                  question: "Can it automate salary processing?",
-                  answer: "Absolutely! It calculates salaries, bonuses, overtime, taxes, and deductions automatically."
-                },
-                {
-                  question: "Does it support attendance devices?",
-                  answer: "Yes, it integrates with biometric attendance machines for accurate tracking."
-                },
-                {
-                  question: "Is it compliant with Bangladeshi tax laws?",
-                  answer: "Yes, it is fully compliant with Bangladesh’s payroll and tax regulations format of NRB."
-                },
-                {
-                  question: "Is payslip generation automatic?",
-                  answer: "Yes, you can generate and download payslips for each employee with one click."
-                },
-                {
-                  question: "Does it offer performance management?",
-                  answer: "Yes, you can monitor and evaluate employee performance and appraisals."
-                },
-                {
-                  question: "Is it user-friendly?",
-                  answer: "Yes, designed for HR and finance teams with no technical expertise required."
-                },
-                {
-                  question: "What kind of support is available?",
-                  answer: "We provide training, live support, and regular updates for smooth operation, as well as 7/24 support."
-                }
-              ].map((faq, index) => (
-                <div key={index} className="faq-item">
-                  <h5>{faq.question}</h5>
-                  <p>{faq.answer}</p>
-                </div>
+              {faqs.map((faq, index) => (
+                <motion.div
+                  key={index}
+                  className="faq-item"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <motion.div
+                    className="faq-question"
+                    onClick={() => toggleFaq(index)}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    style={{ cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "space-between" }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <IoMdCheckmarkCircleOutline className="faq-icon" style={{ marginRight: "10px" }} />
+                      <h5>{faq.question.replace("✅", "")}</h5>
+                    </div>
+                    <motion.div
+                      animate={{ rotate: activeFaq === index ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <IoMdArrowDropdown className="faq-dropdown-icon" />
+                    </motion.div>
+                  </motion.div>
+                  <AnimatePresence>
+                    {activeFaq === index && (
+                      <motion.div
+                        className="faq-answer"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <p>{faq.answer}</p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
               ))}
             </motion.div>
           </div>
         </section>
 
-        {/* Testimonials Section */}
         <section className="testimonials section-padding" id="testimonials">
           <div className="container">
             <motion.div
@@ -559,20 +563,17 @@ export default function HRSoftware() {
                 {
                   name: "Emma Thompson",
                   role: "HR Manager",
-                  quote:
-                    "HRPro’s payroll automation has saved us countless hours. It’s accurate and so easy to use!",
+                  quote: "HRPro’s payroll automation has saved us countless hours. It’s accurate and so easy to use!",
                 },
                 {
                   name: "Michael Chen",
                   role: "Payroll Specialist",
-                  quote:
-                    "The compliance reports keep us audit-ready at all times. HRPro is a lifesaver!",
+                  quote: "The compliance reports keep us audit-ready at all times. HRPro is a lifesaver!",
                 },
                 {
                   name: "Aisha Patel",
                   role: "HR Director",
-                  quote:
-                    "Managing our workforce across locations is seamless with HRPro’s employee dashboard.",
+                  quote: "Managing our workforce across locations is seamless with HRPro’s employee dashboard.",
                 },
               ].map((testimonial, index) => (
                 <motion.div
@@ -583,10 +584,7 @@ export default function HRSoftware() {
                   whileInView="animate"
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.2 }}
-                  whileHover={{
-                    y: -10,
-                    boxShadow: "0 15px 30px rgba(0,0,0,0.15)",
-                  }}
+                  whileHover={{ y: -10, boxShadow: "0 15px 30px rgba(0,0,0,0.15)" }}
                 >
                   <FaStar className="star-icon" />
                   <p className="quote">“{testimonial.quote}”</p>
@@ -598,134 +596,8 @@ export default function HRSoftware() {
           </div>
         </section>
 
-        {/* Pricing Section */}
-        {/* <section className="pricing section-padding" id="pricing">
-          <div className="container">
-            <motion.div
-              className="section-header"
-              variants={fadeIn}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true }}
-            >
-              <h2>Choose Your HR Plan</h2>
-              <p>Flexible pricing to streamline your HR and payroll operations.</p>
-            </motion.div>
-            <div className="pricing-grid">
-              {[
-                {
-                  name: "Starter",
-                  price: "$49",
-                  features: [
-                    "Up to 50 Employees",
-                    "Basic Payroll",
-                    "Standard Reports",
-                    "Email Support",
-                  ],
-                  link: "/pricing/starter",
-                  cta: "Get Started",
-                },
-                {
-                  name: "Growth",
-                  price: "$99",
-                  features: [
-                    "Up to 200 Employees",
-                    "Benefits Administration",
-                    "Compliance Tracking",
-                    "Integrations",
-                    "Priority Support",
-                  ],
-                  link: "/pricing/growth",
-                  cta: "Choose Growth",
-                  popular: true,
-                },
-                {
-                  name: "Enterprise",
-                  price: "Custom",
-                  features: [
-                    "Unlimited Employees",
-                    "All Growth Features",
-                    "Dedicated Manager",
-                    "Custom Integrations",
-                    "24/7 Support",
-                  ],
-                  link: "/contact",
-                  cta: "Contact Us",
-                },
-              ].map((plan, index) => (
-                <motion.div
-                  key={index}
-                  className={`pricing-card ${plan.popular ? "popular" : ""}`}
-                  variants={slideUp}
-                  initial="initial"
-                  whileInView="animate"
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.2 }}
-                  whileHover={{
-                    scale: 1.05,
-                    boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
-                  }}
-                >
-                  {plan.popular && <span className="popular-badge">Most Popular</span>}
-                  <h3>{plan.name}</h3>
-                  <div className="price">
-                    {plan.price}
-                    {plan.price !== "Custom" && <span>/month</span>}
-                  </div>
-                  <ul>
-                    {plan.features.map((feature, i) => (
-                      <li key={i}>
-                        <IoMdCheckmarkCircleOutline className="check-icon" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <Link href={plan.link} legacyBehavior>
-                    <motion.a
-                      className={`btn ${plan.popular ? "btn-primary" : "btn-secondary"}`}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      {plan.cta}
-                    </motion.a>
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section> */}
-
-        {/* CTA Section */}
-        <section className="cta section-padding">
-          <div className="container">
-            <motion.div
-              className="cta-content"
-              variants={fadeIn}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true }}
-            >
-              <h2>Ready to Transform HR?</h2>
-              <p>
-                Start your free trial and let HRPro simplify payroll, compliance, and employee management for your team.
-              </p>
-              <motion.a
-                href="/signup"
-                className="btn btn-primary cta-btn"
-                whileHover={{
-                  scale: 1.1,
-                  boxShadow: "0 8px 20px rgba(245, 158, 11, 0.3)",
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Try for Free
-              </motion.a>
-            </motion.div>
-          </div>
-        </section>
+        
       </div>
-
-
     </>
   );
 }

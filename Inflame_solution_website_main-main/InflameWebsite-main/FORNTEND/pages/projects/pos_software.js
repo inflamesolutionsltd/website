@@ -1,28 +1,27 @@
+
 import Head from "next/head";
 import Link from "next/link";
-import { IoMdCheckmarkCircleOutline, IoIosLock } from "react-icons/io";
+import { IoMdCheckmarkCircleOutline, IoIosLock, IoMdArrowDropdown } from "react-icons/io";
 import { FaCashRegister, FaChartLine, FaGift, FaStar } from "react-icons/fa";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-
 import { FaUsers, FaPlug, FaMobileAlt } from "react-icons/fa";
-import { AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
 export default function POSSoftware() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeTab, setActiveTab] = useState("dashboard");
+  const [openFaqIndex, setOpenFaqIndex] = useState(null);
 
   const slides = [
-    { src: "/img/ex5.jpg", alt: "RetailPro Dashboard" },
-    { src: "/img/transactions.jpg", alt: "Fast Transactions" },
-    { src: "/img/analytics.jpg", alt: "Real-Time Analytics" },
+    { src: "/img/pos.jpg", alt: "Inflame POS Dashboard" },
   ];
+
   const staggerContainer = {
     initial: {},
     animate: {
       transition: {
-        staggerChildren: 0.2, // Stagger delay between child animations
+        staggerChildren: 0.2,
       },
     },
   };
@@ -72,13 +71,17 @@ export default function POSSoftware() {
     transition: { duration: 0.8, ease: "easeOut" },
   };
 
+  const toggleFaq = (index) => {
+    setOpenFaqIndex(openFaqIndex === index ? null : index);
+  };
+
   return (
     <>
       <Head>
-        <title> POS Solutions</title>
+        <title>POS Solutions</title>
         <meta
           name="description"
-          content="Revolutionize your retail experience with RetailPro’s lightning-fast transactions, intuitive inventory tools, and customer-focused features."
+          content="Revolutionize your retail experience with Inflame POS Software’s lightning-fast transactions, intuitive inventory tools, and customer-focused features."
         />
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
@@ -98,12 +101,10 @@ export default function POSSoftware() {
               transition={{ duration: 1.2, ease: "easeOut" }}
             >
               <h1 className="h1">
-                Elevate Retail with <span>RetailPro</span>
+                Best POS Software <span>in Bangladesh</span>
               </h1>
               <p className="p">
-                Turn every sale into a seamless experience with lightning-fast
-                transactions, effortless inventory management, and tools that
-                delight your customers and grow your business.
+                Inflame POS Software is the perfect solution for retail and wholesale businesses in Bangladesh. It offers real-time sales tracking, inventory control, barcode scanning, and multi-branch management to simplify and speed up your entire sales process.
               </p>
               <div className="hero-buttons">
                 <motion.a
@@ -137,8 +138,8 @@ export default function POSSoftware() {
               animate="animate"
             >
               <Image
-                src="/img/payroll.png"
-                alt="RetailPro Dashboard"
+                src="/img/pos1.gif"
+                alt="Inflame POS Dashboard"
                 width={1000}
                 height={550}
                 style={{ objectFit: "contain" }}
@@ -149,10 +150,10 @@ export default function POSSoftware() {
         </section>
         <div className="headers">
           <span className="banner-text">
-            Best Software development company in Bangladesh
+            Best Software Development Company in Bangladesh
           </span>
-          <Link href="contact">
-            <span className="btn btn-secondary">Book for Demo</span>
+          <Link href="contact" legacyBehavior>
+            <a className="btn btn-secondary">Book for Demo</a>
           </Link>
         </div>
 
@@ -166,7 +167,7 @@ export default function POSSoftware() {
               whileInView="animate"
               viewport={{ once: true }}
             >
-              <h2 className="h1">Features That Spark Retail Magic</h2>
+              <h2 className="h1">Key Features of Inflame POS Software</h2>
               <p className="p">
                 Empower your store with tools crafted for speed, simplicity, and
                 unforgettable customer experiences.
@@ -176,13 +177,13 @@ export default function POSSoftware() {
               {[
                 {
                   icon: <FaCashRegister />,
-                  title: "Fast Transactions",
-                  desc: "Process sales in seconds with an intuitive checkout interface.",
+                  title: "Fast Billing & Sales Processing",
+                  desc: "Quickly process sales, apply discounts, and accept multiple payment methods (cash, card, mobile wallet).",
                 },
                 {
                   icon: <FaChartLine />,
-                  title: "Real-Time Insights",
-                  desc: "Track sales, inventory, and trends with vibrant dashboards.",
+                  title: "Real-Time Inventory Tracking",
+                  desc: "Keep your inventory updated with each sale, return, or stock adjustment.",
                 },
                 {
                   icon: <FaUsers />,
@@ -196,8 +197,8 @@ export default function POSSoftware() {
                 },
                 {
                   icon: <FaGift />,
-                  title: "Loyalty Programs",
-                  desc: "Reward customers with personalized offers and points.",
+                  title: "Customer Management System",
+                  desc: "Save customer data, track purchase history, and offer loyalty points or discounts.",
                 },
                 {
                   icon: <IoIosLock />,
@@ -247,7 +248,7 @@ export default function POSSoftware() {
               whileInView="animate"
               viewport={{ once: true }}
             >
-              <h2 className="h1">Why RetailPro Shines Bright</h2>
+              <h2 className="h1">Why Inflame POS Shines Bright</h2>
               <p className="p">
                 Unlock the power to transform your store into a customer magnet
                 and a sales powerhouse.
@@ -262,8 +263,8 @@ export default function POSSoftware() {
                 viewport={{ once: true }}
               >
                 <Image
-                  src="/img/img2.gif"
-                  alt="RetailPro Benefits"
+                  src="/img/pos1.gif"
+                  alt="Inflame POS Benefits"
                   width={880}
                   height={450}
                   style={{ objectFit: "contain" }}
@@ -273,24 +274,24 @@ export default function POSSoftware() {
               <div className="benefits-list">
                 {[
                   {
-                    title: "Boost Sales",
-                    desc: "Speed up checkouts and upsell with smart suggestions.",
+                    title: "Speed Up Billing Process",
+                    desc: "Quickly process sales with a streamlined checkout system.",
                   },
                   {
-                    title: "Delight Customers",
-                    desc: "Create memorable experiences with personalized service.",
+                    title: "Improve Customer Experience",
+                    desc: "Create memorable experiences with personalized service and loyalty programs.",
                   },
                   {
-                    title: "Simplify Operations",
-                    desc: "Manage inventory and staff from one sleek platform.",
+                    title: "Track Sales & Inventory in Real-Time",
+                    desc: "Stay updated with live sales and inventory data.",
                   },
                   {
-                    title: "Grow Loyalty",
-                    desc: "Keep customers coming back with tailored rewards.",
+                    title: "Manage Multiple Stores Easily",
+                    desc: "Centralized dashboard for multi-branch management.",
                   },
                   {
-                    title: "Scale Effortlessly",
-                    desc: "Expand your business with tools that adapt to your vision.",
+                    title: "Get Smart Business Insights",
+                    desc: "Leverage analytics to make data-driven decisions.",
                   },
                 ].map((benefit, index) => (
                   <motion.div
@@ -324,12 +325,9 @@ export default function POSSoftware() {
               whileInView="animate"
               viewport={{ once: true }}
             >
-              <h2>Experience RetailPro in Action</h2>
+              <h2>Experience Inflame POS in Action</h2>
               <p className="p">
-                Explore the power of RetailPro’s POS system through an
-                interactive demo. See how our intuitive interface, fast
-                transactions, and robust analytics can transform your retail
-                operations.
+                Explore the power of Inflame POS Software’s system through an interactive demo. See how our intuitive interface, fast transactions, and robust analytics can transform your retail operations.
               </p>
             </motion.div>
             <motion.div
@@ -370,8 +368,7 @@ export default function POSSoftware() {
                     {slides.map((_, index) => (
                       <button
                         key={index}
-                        className={`carousel-dot ${index === currentSlide ? "active" : ""
-                          }`}
+                        className={`carousel-dot ${index === currentSlide ? "active" : ""}`}
                         onClick={() => setCurrentSlide(index)}
                       />
                     ))}
@@ -390,8 +387,7 @@ export default function POSSoftware() {
                     {tabs.map((tab) => (
                       <motion.button
                         key={tab.id}
-                        className={`demo-tab ${activeTab === tab.id ? "active" : ""
-                          }`}
+                        className={`demo-tab ${activeTab === tab.id ? "active" : ""}`}
                         onClick={() => setActiveTab(tab.id)}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
@@ -426,7 +422,7 @@ export default function POSSoftware() {
                     ].map((benefit, index) => (
                       <motion.div
                         key={index}
-                        variants={fadeIn} // Apply child animation here
+                        variants={fadeIn}
                         className="benefit-item"
                       >
                         <IoMdCheckmarkCircleOutline className="check-icon" />
@@ -438,22 +434,10 @@ export default function POSSoftware() {
               </div>
 
               {/* Floating Request Demo Button */}
-              <motion.a
-                href="/request-demo"
-                className="btn btn-primary demo-request-btn"
-                whileHover={{
-                  scale: 1.1,
-                  boxShadow: "0 8px 20px rgba(245, 158, 11, 0.4)",
-                }}
-                whileTap={{ scale: 0.95 }}
-                animate={{ scale: [1, 1.05, 1] }}
-                transition={{ repeat: Infinity, duration: 1.5 }}
-              >
-                Request a Live Demo
-              </motion.a>
+             
             </motion.div>
 
-            {/* FAQ Snippet */}
+            {/* FAQ Section */}
             <motion.div
               className="demo-faq"
               variants={fadeIn}
@@ -461,23 +445,82 @@ export default function POSSoftware() {
               whileInView="animate"
               viewport={{ once: true }}
             >
-              <h4>Frequently Asked Questions</h4>
-              <div className="faq-item">
-                <h5>Is RetailPro compatible with mobile devices?</h5>
-                <p>
-                  Yes, RetailPro offers full mobile compatibility, allowing you
-                  to process transactions and manage operations from anywhere
-                  using our mobile app.
-                </p>
-              </div>
-              <div className="faq-item">
-                <h5>Can I integrate RetailPro with my existing systems?</h5>
-                <p>
-                  Absolutely. RetailPro supports seamless integrations with
-                  popular e-commerce platforms, accounting software, and
-                  marketing tools.
-                </p>
-              </div>
+              <h4>FAQs – Inflame POS Software</h4>
+              {[
+                {
+                  question: "What is Inflame POS Software?",
+                  answer: "It’s a powerful point-of-sale (POS) solution for managing billing, sales, inventory, and customer data in one easy system.",
+                },
+                {
+                  question: "Who can use this POS software?",
+                  answer: "Retail shops, restaurants, fashion stores, electronics stores, and multi-branch businesses.",
+                },
+                {
+                  question: "Does it work offline?",
+                  answer: "Yes! It works offline and syncs data automatically when you're back online.",
+                },
+                {
+                  question: "Is it suitable for multiple branches?",
+                  answer: "Yes, you can manage multiple stores or branches from one admin panel.",
+                },
+                {
+                  question: "Can I track real-time inventory?",
+                  answer: "Absolutely! Inventory updates live with every sale, return, or stock movement.",
+                },
+                {
+                  question: "Is it user-friendly?",
+                  answer: "Yes, our intuitive dashboard is easy to use for any cashier or store manager.",
+                },
+                {
+                  question: "Can I integrate barcode scanners?",
+                  answer: "Yes, Inflame POS fully supports barcode readers and printers.",
+                },
+                {
+                  question: "Does it generate profit reports?",
+                  answer: "Yes, detailed reports help track profits, returns, and sales growth.",
+                },
+                {
+                  question: "Is it cloud-based?",
+                  answer: "Yes, you can access the system from any device, anytime.",
+                },
+                {
+                  question: "Does it support different payment methods?",
+                  answer: "Yes, including cash, cards, mobile wallets, and digital payment gateways.",
+                },
+                {
+                  question: "Can it manage customer data?",
+                  answer: "Yes, it stores customer info, purchase history, and loyalty data.",
+                },
+                {
+                  question: "Do you offer training and support?",
+                  answer: "Of course! We offer full training, live support, and 24/7 assistance physically and virtually.",
+                },
+              ].map((faq, index) => (
+                <div key={index} className="faq-item">
+                  <div
+                    className="faq-question"
+                    onClick={() => toggleFaq(index)}
+                  >
+                    <IoMdArrowDropdown
+                      className={`faq-icon ${openFaqIndex === index ? "open" : ""}`}
+                    />
+                    {faq.question}
+                  </div>
+                  <AnimatePresence>
+                    {openFaqIndex === index && (
+                      <motion.div
+                        className="faq-answer"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <p>{faq.answer}</p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
             </motion.div>
           </div>
         </section>
@@ -492,10 +535,9 @@ export default function POSSoftware() {
               whileInView="animate"
               viewport={{ once: true }}
             >
-              <h2>Voices from Retail Champions</h2>
+              <h2>Voices from Retail Champions with Inflame POS</h2>
               <p>
-                Hear from store owners thriving with RetailPro’s vibrant POS
-                solutions.
+                Hear from store owners thriving with Inflame POS Software’s vibrant solutions.
               </p>
             </motion.div>
             <div className="testimonials-grid">
@@ -504,19 +546,19 @@ export default function POSSoftware() {
                   name: "Lila Carter",
                   role: "Boutique Owner",
                   quote:
-                    "RetailPro turned our checkout process into a breeze. Customers love the speed and our sales are soaring!",
+                    "Inflame POS turned our checkout process into a breeze. Customers love the speed and our sales are soaring!",
                 },
                 {
                   name: "Jamal Khan",
                   role: "Café Manager",
                   quote:
-                    "The loyalty program keeps our regulars coming back. It’s like RetailPro knows our customers better than we do!",
+                    "The loyalty program in Inflame POS keeps our regulars coming back. It’s like the software knows our customers better than we do!",
                 },
                 {
                   name: "Sophie Nguyen",
                   role: "Retail Chain Director",
                   quote:
-                    "Managing multiple stores is effortless now. RetailPro’s insights help us stay ahead of the game.",
+                    "Managing multiple stores is effortless now. Inflame POS’s insights help us stay ahead of the game.",
                 },
               ].map((testimonial, index) => (
                 <motion.div
@@ -628,8 +670,7 @@ export default function POSSoftware() {
                   </ul>
                   <Link href={plan.link} legacyBehavior>
                     <motion.a
-                      className={`btn ${plan.popular ? "btn-primary" : "btn-secondary"
-                        }`}
+                      className={`btn ${plan.popular ? "btn-primary" : "btn-secondary"}`}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
@@ -643,7 +684,7 @@ export default function POSSoftware() {
         </section> */}
 
         {/* CTA Section */}
-        <section className="cta section-padding">
+        {/* <section className="cta section-padding">
           <div className="container">
             <motion.div
               className="cta-content"
@@ -652,10 +693,9 @@ export default function POSSoftware() {
               whileInView="animate"
               viewport={{ once: true }}
             >
-              <h2>Ready to Redefine Retail?</h2>
+              <h2>Ready to Redefine Retail with Inflame POS?</h2>
               <p>
-                Start your free trial and let RetailPro bring joy to every
-                transaction and spark to your business growth.
+                Start your free trial and let Inflame POS Software bring joy to every transaction and spark to your business growth.
               </p>
               <motion.a
                 href="/signup"
@@ -670,7 +710,7 @@ export default function POSSoftware() {
               </motion.a>
             </motion.div>
           </div>
-        </section>
+        </section> */}
       </div>
     </>
   );

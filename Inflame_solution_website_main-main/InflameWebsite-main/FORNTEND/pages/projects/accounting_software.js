@@ -1,21 +1,62 @@
 
 import Head from "next/head";
 import Link from "next/link";
-import { IoMdCheckmarkCircleOutline, IoIosLock } from "react-icons/io";
-import { FaCashRegister, FaChartLine, FaGift, FaStar } from "react-icons/fa";
+import { IoMdCheckmarkCircleOutline, IoIosLock, IoMdArrowDropdown } from "react-icons/io";
+import { FaCashRegister, FaChartLine, FaGift, FaStar, FaUsers, FaPlug, FaMobileAlt } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { FaUsers, FaPlug, FaMobileAlt } from "react-icons/fa";
 import { useState } from "react";
 
 export default function AccountingSoftware() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeTab, setActiveTab] = useState("dashboard");
+  const [activeFaq, setActiveFaq] = useState(null);
 
   const slides = [
     { src: "/img/accounting.gif", alt: "AccountPro Dashboard" },
-    { src: "/img/1.jpg", alt: "Automated Invoicing" },
-    { src: "/img/3.jpg", alt: "Financial Reports" },
+  ];
+
+  const faqs = [
+    {
+      question: "What is accounting software?",
+      answer: "Accounting software helps businesses manage financial tasks like invoicing, expense tracking, payroll, and reporting digitally.",
+    },
+    {
+      question: "Who can use this software?",
+      answer: "It’s ideal for small to large businesses, freelancers, and accountants needing to manage finances efficiently.",
+    },
+    {
+      question: "Is the software suitable for Bangladeshi businesses?",
+      answer: "Yes, it supports BDT currency, local tax/VAT regulations, and Bangla/English languages followed by NRB format.",
+    },
+    {
+      question: "Can I access it online?",
+      answer: "Yes, our software is cloud-based, allowing access anytime from any device.",
+    },
+    {
+      question: "Is my data secure?",
+      answer: "Absolutely. We use advanced encryption and regular backups to protect your financial data.",
+    },
+    {
+      question: "Can multiple users access the software?",
+      answer: "Yes, you can add team members with role-based permissions for secure collaboration.",
+    },
+    {
+      question: "Does it support VAT calculation?",
+      answer: "Yes, our software is fully compliant with Bangladesh’s VAT requirements.",
+    },
+    {
+      question: "Is there customer support available?",
+      answer: "Yes, we offer dedicated support via phone, email, and live chat.",
+    },
+    {
+      question: "Can I generate financial reports?",
+      answer: "Yes, you can generate real-time reports like profit & loss, balance sheets, and cash flow statements.",
+    },
+    {
+      question: "Is there a free trial available?",
+      answer: "Yes, we offer a free trial to explore AccountPro’s features.",
+    },
   ];
 
   const staggerContainer = {
@@ -72,13 +113,17 @@ export default function AccountingSoftware() {
     transition: { duration: 0.8, ease: "easeOut" },
   };
 
+  const toggleFaq = (index) => {
+    setActiveFaq(activeFaq === index ? null : index);
+  };
+
   return (
     <>
       <Head>
         <title>Accounting Solutions</title>
         <meta
           name="description"
-          content="Streamline your financial management with AccountPro’s intuitive dashboard, automated invoicing, and powerful reporting tools."
+          content="Inflame Solution Ltd is a leading accounting software development company in Bangladesh, delivering robust, scalable solutions to optimize financial processes."
         />
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
@@ -98,7 +143,7 @@ export default function AccountingSoftware() {
               transition={{ duration: 1.2, ease: "easeOut" }}
             >
               <h1 className="h1">
-                Best accounting software <span> in Bangladesh</span>
+                Best accounting software <span>in Bangladesh</span>
               </h1>
               <p className="p">
                 Discover the best accounting software designed to simplify your finances, improve accuracy, and optimize bookkeeping for businesses of all sizes.
@@ -141,15 +186,16 @@ export default function AccountingSoftware() {
                 height={550}
                 style={{ objectFit: "contain" }}
                 className="hero-img"
+                onError={() => console.error("Failed to load hero image")}
               />
             </motion.div>
           </div>
         </section>
         <div className="headers">
           <span className="banner-text">
-            Best Software development company in Bangladesh
+            Premier Accounting Software Solutions in Bangladesh
           </span>
-          <Link href="contact">
+          <Link href="/contact" legacyBehavior>
             <span className="btn btn-secondary">Book for Demo</span>
           </Link>
         </div>
@@ -164,10 +210,9 @@ export default function AccountingSoftware() {
               whileInView="animate"
               viewport={{ once: true }}
             >
-              <h2 className="h1">Why inflame Accounting Software is best accounting in bangladesh</h2>
+              <h2 className="h1">Our Accounting Software Features</h2>
               <p className="p">
-                Inflame offers the best accounting software in Bangladesh which is easy and it follows local rules like VAT and tax NRB Format. The system is simple, fast, 
-                and works well for small, medium, and large companies
+                Equip your financial team with tools for seamless bookkeeping, reporting, and compliance.
               </p>
             </motion.div>
             <div className="feature-grid">
@@ -245,9 +290,9 @@ export default function AccountingSoftware() {
               whileInView="animate"
               viewport={{ once: true }}
             >
-              <h2 className="h1">Why AccountPro Stands Out</h2>
+              <h2 className="h1">Why Choose Inflame as Your Accounting Software Partner?</h2>
               <p className="p">
-                Streamline your financial operations and focus on growing your business with AccountPro.
+                Transform financial operations with tools that boost efficiency, reduce errors, and ensure compliance.
               </p>
             </motion.div>
             <div className="benefits-grid">
@@ -265,29 +310,38 @@ export default function AccountingSoftware() {
                   height={450}
                   style={{ objectFit: "contain" }}
                   className="benefits-img"
+                  onError={() => console.error("Failed to load benefits image")}
                 />
               </motion.div>
               <div className="benefits-list">
                 {[
                   {
-                    title: "Save Time",
-                    desc: "Automate repetitive tasks like invoicing and reconciliation.",
+                    title: "Experienced Development Team",
+                    desc: "Our skilled developers deliver reliable accounting solutions.",
                   },
                   {
-                    title: "Increase Accuracy",
-                    desc: "Reduce errors with smart data entry and validation.",
+                    title: "Customizable Solutions",
+                    desc: "Tailored software to fit your unique financial needs.",
                   },
                   {
-                    title: "Ensure Compliance",
-                    desc: "Stay audit-ready with accurate tax and financial records.",
+                    title: "Cutting-Edge Technologies",
+                    desc: "Built with modern tech for performance and scalability.",
                   },
                   {
-                    title: "Gain Insights",
-                    desc: "Make informed decisions with detailed financial analytics.",
+                    title: "Cost-Effective Pricing",
+                    desc: "Affordable solutions without compromising quality.",
                   },
                   {
-                    title: "Scale Confidently",
-                    desc: "Grow your business with tools that adapt to your needs.",
+                    title: "Timely Delivery",
+                    desc: "We ensure projects are completed on schedule.",
+                  },
+                  {
+                    title: "Robust Client Support",
+                    desc: "24/7 support to keep your operations running smoothly.",
+                  },
+                  {
+                    title: "Scalable Development",
+                    desc: "Software that grows with your financial demands.",
                   },
                 ].map((benefit, index) => (
                   <motion.div
@@ -321,7 +375,7 @@ export default function AccountingSoftware() {
               whileInView="animate"
               viewport={{ once: true }}
             >
-              <h2>Experience AccountPro in Action</h2>
+              <h2>Why Choose Accounting software </h2>
               <p className="p">
                 Explore the power of AccountPro’s accounting software through an interactive demo. See how our intuitive dashboard, automated invoicing, and advanced reporting can simplify your financial management.
               </p>
@@ -435,26 +489,9 @@ export default function AccountingSoftware() {
                   </motion.div>
                 </motion.div>
               </div>
-
-              {/* Floating Request Demo Button */}
-              <Link href="/request-demo" legacyBehavior>
-                <motion.a
-                  className="btn btn-primary demo-request-btn"
-                  onClick={() => console.log("Request Demo clicked")}
-                  whileHover={{
-                    scale: 1.1,
-                    boxShadow: "0 8px 20px rgba(245, 158, 11, 0.4)",
-                  }}
-                  whileTap={{ scale: 0.95 }}
-                  animate={{ scale: [1, 1.03, 1] }}
-                  transition={{ repeat: Infinity, duration: 2 }}
-                >
-                  Request a Live Demo
-                </motion.a>
-              </Link>
             </motion.div>
 
-            {/* FAQ Snippet */}
+            {/* FAQ Section */}
             <motion.div
               className="demo-faq"
               variants={fadeIn}
@@ -462,67 +499,48 @@ export default function AccountingSoftware() {
               whileInView="animate"
               viewport={{ once: true }}
             >
-              <h4>Frequently Asked Questions</h4>
-              <div className="faq-item">
-                <h5>1. What is accounting software?</h5>
-                <p>
-                  Accounting software helps businesses manage financial tasks like invoicing, expense tracking, payroll, and reporting digitally.
-                </p>
-              </div>
-              <div className="faq-item">
-                <h5>2. Who can use this software?</h5>
-                <p>
-                  It’s ideal for small to large businesses, freelancers, and accountants needing to manage finances efficiently.
-                </p>
-              </div>
-               <div className="faq-item">
-                <h5>3. Is the software suitable for Bangladeshi businesses?</h5>
-                <p>
-                  Yes, it supports BDT currency, local tax/VAT regulations, and Bangla/English languages followed by NRB format.
-                </p>
-              </div>
-              <div className="faq-item">
-                <h5>4. Can I access it online?</h5>
-                <p>
-                  Yes, our software is cloud-based, allowing access anytime from any device.
-                </p>
-              </div>
-               <div className="faq-item">
-                <h5>5. Is my data secure?</h5>
-                <p>
-                  Absolutely. We use advanced encryption and regular backups to protect your financial data.
-                </p>
-              </div>
-              <div className="faq-item">
-                <h5>6. Can multiple users access the software?</h5>
-                <p>
-                 Yes, you can add team members with role-based permissions for secure collaboration
-                </p>
-              </div>
-              <div className="faq-item">
-                <h5>7. Does it support VAT calculation?</h5>
-                <p>
-                 Yes, our software is fully compliant with Bangladesh’s VAT requirements.
-                </p>
-              </div>
-              <div className="faq-item">
-                <h5>8. Is there customer support available?</h5>
-                <p>
-                 Yes, we offer dedicated support via phone, email, and live chat.
-                </p>
-              </div>
-              <div className="faq-item">
-                <h5>9. Can I generate financial reports?</h5>
-                <p>
-                 Yes, you can generate real-time reports like profit & loss, balance sheets, and cash flow statements.
-                </p>
-              </div>
-              <div className="faq-item">
-                <h5>10. Is there a free trial available?</h5>
-                <p>
-                 10. Is there a free trial available?
-                </p>
-              </div>
+              <h4>FAQs Accounting Software Development Services</h4>
+              {faqs.map((faq, index) => (
+                <motion.div
+                  key={index}
+                  className="faq-item"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <motion.div
+                    className="faq-question"
+                    onClick={() => toggleFaq(index)}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    style={{ cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "space-between" }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <IoMdCheckmarkCircleOutline className="faq-icon" style={{ marginRight: "10px" }} />
+                      <h5>{faq.question}</h5>
+                    </div>
+                    <motion.div
+                      animate={{ rotate: activeFaq === index ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <IoMdArrowDropdown className="faq-dropdown-icon" />
+                    </motion.div>
+                  </motion.div>
+                  <AnimatePresence>
+                    {activeFaq === index && (
+                      <motion.div
+                        className="faq-answer"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <p>{faq.answer}</p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              ))}
             </motion.div>
           </div>
         </section>
@@ -537,7 +555,7 @@ export default function AccountingSoftware() {
               whileInView="animate"
               viewport={{ once: true }}
             >
-              <h2>Voices from Financial Experts</h2>
+              <h2>Voices from Accounting Leaders</h2>
               <p>Hear from businesses thriving with AccountPro’s accounting solutions.</p>
             </motion.div>
             <div className="testimonials-grid">
@@ -682,7 +700,7 @@ export default function AccountingSoftware() {
         </section> */}
 
         {/* CTA Section */}
-        <section className="cta section-padding">
+        {/* <section className="cta section-padding">
           <div className="container">
             <motion.div
               className="cta-content"
@@ -691,7 +709,7 @@ export default function AccountingSoftware() {
               whileInView="animate"
               viewport={{ once: true }}
             >
-              <h2>Ready to Simplify Your Accounting?</h2>
+              <h2>Ready to Transform Accounting?</h2>
               <p>
                 Start your free trial and let AccountPro bring clarity to your finances and spark to your business growth.
               </p>
@@ -708,7 +726,7 @@ export default function AccountingSoftware() {
               </motion.a>
             </motion.div>
           </div>
-        </section>
+        </section> */}
       </div>
     </>
   );

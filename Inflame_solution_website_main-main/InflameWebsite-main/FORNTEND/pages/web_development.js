@@ -723,7 +723,7 @@ export default function WebDevelopment() {
         </section> */}
 
         {/* CTA Section */}
-        <section className="cta section-padding bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
+        {/* <section className="cta section-padding bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
           <div className="container mx-auto px-4 text-center">
             <motion.div
               className="cta-content"
@@ -749,7 +749,7 @@ export default function WebDevelopment() {
               </motion.a>
             </motion.div>
           </div>
-        </section>
+        </section> */}
       </div>
 
      

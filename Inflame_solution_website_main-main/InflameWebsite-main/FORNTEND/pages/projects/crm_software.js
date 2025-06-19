@@ -1,18 +1,19 @@
 import Head from "next/head";
 import Link from "next/link";
-import { IoMdCheckmarkCircleOutline, IoIosLock } from "react-icons/io";
+import { IoMdCheckmarkCircleOutline, IoIosLock, IoMdArrowDropdown } from "react-icons/io";
 import { FaUsers, FaChartLine, FaGift, FaStar } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { FaPlug, FaMobileAlt, FaCogs } from "react-icons/fa";
+import { FaCogs, FaMobileAlt, FaEnvelope, FaBell, FaUserCog } from "react-icons/fa";
 import { useState } from "react";
 
 export default function CRMSoftware() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeTab, setActiveTab] = useState("dashboard");
+  const [openFaqIndex, setOpenFaqIndex] = useState(null);
 
   const slides = [
-    { src: "/img/img2.gif", alt: "CRMPro Dashboard" },
+    { src: "/img/crm.jpg", alt: "CRMPro Dashboard" },
     { src: "/img/lead-management.jpg", alt: "Lead Management" },
     { src: "/img/sales-analytics.jpg", alt: "Sales Analytics" },
   ];
@@ -71,6 +72,10 @@ export default function CRMSoftware() {
     transition: { duration: 0.8, ease: "easeOut" },
   };
 
+  const toggleFaq = (index) => {
+    setOpenFaqIndex(openFaqIndex === index ? null : index);
+  };
+
   return (
     <>
       <Head>
@@ -97,10 +102,12 @@ export default function CRMSoftware() {
               transition={{ duration: 1.2, ease: "easeOut" }}
             >
               <h1 className="h1">
-                Grow Smarter with <span>CRMPro</span>
+                Best CRM Software <span>in Bangladesh</span>
               </h1>
               <p className="p">
-                Streamline customer management, automate lead nurturing, and gain insights with tools designed to drive sales and strengthen relationships.
+                CRM Customer Relationship Management, Inflame CRM Software is the ultimate solution for managing customer relationships,
+sales funnel, Lead management, follow-up leads status, and business communication. Designed for businesses of all sizes, it helps
+increase sales, improve customer service, and automate daily tasks, making it the best CRM software in Bangladesh.
               </p>
               <div className="hero-buttons">
                 <motion.a
@@ -134,7 +141,7 @@ export default function CRMSoftware() {
               animate="animate"
             >
               <Image
-                src="/img/img3.gif"
+                src="/img/crm1.jpg"
                 alt="CRMPro Dashboard"
                 width={1000}
                 height={550}
@@ -164,7 +171,7 @@ export default function CRMSoftware() {
               whileInView="animate"
               viewport={{ once: true }}
             >
-              <h2 className="h1">Features That Drive Sales</h2>
+              <h2 className="h1">Key Features of Inflame CRM Software</h2>
               <p className="p">
                 Equip your sales team with tools for seamless customer management, lead tracking, and analytics.
               </p>
@@ -173,43 +180,43 @@ export default function CRMSoftware() {
               {[
                 {
                   icon: <FaUsers />,
-                  title: "Customer Management",
-                  desc: "Centralize customer data and interactions in one platform.",
+                  title: "Lead & Contact Management",
+                  desc: "Capture, store, and organize leads and customer data in one centralized platform.",
                 },
                 {
                   icon: <FaChartLine />,
-                  title: "Sales Analytics",
-                  desc: "Track pipeline performance and sales trends with clear dashboards.",
+                  title: "Sales Funnel Tracking",
+                  desc: "Visualize sales stages, follow up leads, and close deals faster with pipeline management.",
                 },
                 {
                   icon: <FaCogs />,
-                  title: "Lead Automation",
-                  desc: "Automate lead scoring, nurturing, and follow-ups.",
+                  title: "Task & Activity Automation",
+                  desc: "Assign tasks, schedule meetings, and set reminders to keep your sales team on track.",
                 },
                 {
-                  icon: <FaMobileAlt />,
-                  title: "Mobile Access",
-                  desc: "Manage customer relationships on the go with our mobile app.",
+                  icon: <FaEnvelope />,
+                  title: "Email & SMS Integration",
+                  desc: "Communicate directly with customers via automated email and SMS campaigns.",
                 },
                 {
                   icon: <FaGift />,
-                  title: "Campaign Tracking",
-                  desc: "Monitor marketing campaigns and their impact on sales.",
+                  title: "Customer Support Ticketing",
+                  desc: "Manage customer inquiries and issues efficiently with a built-in support ticket system.",
                 },
                 {
-                  icon: <IoIosLock />,
-                  title: "Secure Data",
-                  desc: "Protect sensitive customer data with top-tier encryption.",
+                  icon: <FaBell />,
+                  title: "Follow-Up Reminders & Alerts",
+                  desc: "Never miss an opportunity, get reminders for follow-ups, meetings, and renewals.",
                 },
                 {
-                  icon: <FaPlug />,
-                  title: "Seamless Integrations",
-                  desc: "Sync with email, marketing, and support platforms.",
+                  icon: <FaMobileAlt />,
+                  title: "Custom Dashboard & Reports",
+                  desc: "Get real-time analytics, performance summaries, and detailed activity reports.",
                 },
                 {
-                  icon: <FaStar />,
-                  title: "Pipeline Management",
-                  desc: "Visualize and optimize your sales pipeline with ease.",
+                  icon: <FaUserCog />,
+                  title: "Multi-User Role Management",
+                  desc: "Assign access and roles for sales, support, and admin teams with full control.",
                 },
               ].map((feature, index) => (
                 <motion.div
@@ -244,7 +251,7 @@ export default function CRMSoftware() {
               whileInView="animate"
               viewport={{ once: true }}
             >
-              <h2 className="h1">Why CRMPro Excels</h2>
+              <h2 className="h1">Why You Need the Best CRM Software.</h2>
               <p className="p">
                 Transform sales and customer relationships with tools that save time, enhance efficiency, and drive growth.
               </p>
@@ -258,7 +265,7 @@ export default function CRMSoftware() {
                 viewport={{ once: true }}
               >
                 <Image
-                  src="/img/img3.gif"
+                  src="/img/crm1.jpg"
                   alt="CRMPro Benefits"
                   width={880}
                   height={450}
@@ -270,23 +277,27 @@ export default function CRMSoftware() {
               <div className="benefits-list">
                 {[
                   {
-                    title: "Save Time",
+                    title: "Centralizes customer data",
                     desc: "Automate lead management to focus on closing deals.",
                   },
                   {
-                    title: "Boost Efficiency",
+                    title: "Increase sales and conversions",
                     desc: "Streamline customer interactions with centralized data.",
                   },
                   {
-                    title: "Stay Organized",
+                    title: "Automates follow-ups and reminders",
                     desc: "Track leads and sales with a unified dashboard.",
                   },
                   {
-                    title: "Drive Revenue",
+                    title: "Improves team collaboration",
                     desc: "Optimize pipelines and campaigns for higher conversions.",
                   },
                   {
-                    title: "Scale with Ease",
+                    title: "Enhances customer satisfaction",
+                    desc: "Grow your sales team with tools that adapt to your needs.",
+                  },
+                  {
+                    title: "Saves time with task automation",
                     desc: "Grow your sales team with tools that adapt to your needs.",
                   },
                 ].map((benefit, index) => (
@@ -321,7 +332,7 @@ export default function CRMSoftware() {
               whileInView="animate"
               viewport={{ once: true }}
             >
-              <h2>Experience CRMPro in Action</h2>
+              <h2>Why Choose Inflame Solutions</h2>
               <p className="p">
                 Discover CRMPro’s CRM system through an interactive demo. See how our dashboard, lead management, and analytics drive sales success.
               </p>
@@ -437,24 +448,9 @@ export default function CRMSoftware() {
               </div>
 
               {/* Floating Request Demo Button */}
-              <Link href="/request-demo" legacyBehavior>
-                <motion.a
-                  className="btn btn-primary demo-request-btn"
-                  onClick={() => console.log("Request Demo clicked")}
-                  whileHover={{
-                    scale: 1.1,
-                    boxShadow: "0 8px 20px rgba(245, 158, 11, 0.4)",
-                  }}
-                  whileTap={{ scale: 0.95 }}
-                  animate={{ scale: [1, 1.03, 1] }}
-                  transition={{ repeat: Infinity, duration: 2 }}
-                >
-                  Request a Live Demo
-                </motion.a>
-              </Link>
             </motion.div>
 
-            {/* FAQ Snippet */}
+            {/* FAQ Section */}
             <motion.div
               className="demo-faq"
               variants={fadeIn}
@@ -462,19 +458,82 @@ export default function CRMSoftware() {
               whileInView="animate"
               viewport={{ once: true }}
             >
-              <h4>Frequently Asked Questions</h4>
-              <div className="faq-item">
-                <h5>Is CRMPro compatible with mobile devices?</h5>
-                <p>
-                  Yes, CRMPro offers full mobile compatibility, allowing you to manage customers and leads from anywhere using our mobile app.
-                </p>
-              </div>
-              <div className="faq-item">
-                <h5>Can I integrate CRMPro with my existing systems?</h5>
-                <p>
-                  Absolutely. CRMPro supports seamless integrations with email, marketing, and support platforms.
-                </p>
-              </div>
+              <h4>FAQs Inflame CRM Software</h4>
+              {[
+                {
+                  question: "What is Inflame CRM Software?",
+                  answer: "CRM is customer relationship management, a cloud-based solution for managing customer data, sales funnels, communication, and support.",
+                },
+                {
+                  question: "Who should use this software?",
+                  answer: "Perfect for retail, service-based companies, agencies, real estate, and startups in Bangladesh many more.",
+                },
+                {
+                  question: "Can I manage leads and contacts?",
+                  answer: "Yes! Organize, track, and follow up with leads and customers from one dashboard.",
+                },
+                {
+                  question: "Is it cloud-based?",
+                  answer: "Yes, it’s fully cloud-based with mobile and desktop access.",
+                },
+                {
+                  question: "Can I track my sales team’s activities?",
+                  answer: "Absolutely! Monitor progress, assign tasks, and analyze performance in real time.",
+                },
+                {
+                  question: "Is customer support built-in?",
+                  answer: "Yes, it includes a ticketing system for efficient customer issue tracking.",
+                },
+                {
+                  question: "Can I send emails and SMS from the software?",
+                  answer: "Yes, send and schedule personalized campaigns directly from the platform.",
+                },
+                {
+                  question: "Is it customizable?",
+                  answer: "Yes, you can customize dashboards, reports, fields, and workflows.",
+                },
+                {
+                  question: "Does it offer multi-user access?",
+                  answer: "Yes, assign different roles to your sales, support, and admin teams.",
+                },
+                {
+                  question: "Are there reports and analytics?",
+                  answer: "Yes, get full insights on leads, sales, team activities, and customer engagement.",
+                },
+                {
+                  question: "Can I integrate it with other software?",
+                  answer: "Yes, integrate it with accounting, ERP, inventory, and more.",
+                },
+                {
+                  question: "Do you offer training and support?",
+                  answer: "Of course! We offer full training, live support, and 24/7 assistance physically and virtually.",
+                },
+              ].map((faq, index) => (
+                <div key={index} className="faq-item">
+                  <div
+                    className="faq-question"
+                    onClick={() => toggleFaq(index)}
+                  >
+                    <IoMdArrowDropdown
+                      className={`faq-icon ${openFaqIndex === index ? "open" : ""}`}
+                    />
+                    {faq.question}
+                  </div>
+                  <AnimatePresence>
+                    {openFaqIndex === index && (
+                      <motion.div
+                        className="faq-answer"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <p>{faq.answer}</p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
             </motion.div>
           </div>
         </section>
@@ -634,7 +693,7 @@ export default function CRMSoftware() {
         </section> */}
 
         {/* CTA Section */}
-        <section className="cta section-padding">
+        {/* <section className="cta section-padding">
           <div className="container">
             <motion.div
               className="cta-content"
@@ -660,7 +719,7 @@ export default function CRMSoftware() {
               </motion.a>
             </motion.div>
           </div>
-        </section>
+        </section> */}
       </div>
     </>
   );

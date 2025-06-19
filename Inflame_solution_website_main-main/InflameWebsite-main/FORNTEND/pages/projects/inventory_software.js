@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
-import { IoMdCheckmarkCircleOutline, IoIosLock } from "react-icons/io";
-import { FaCashRegister, FaChartLine, FaGift, FaStar, FaUsers, FaPlug, FaMobileAlt, FaBarcode, FaWarehouse, FaFileInvoice, FaChartBar, FaHandshake, FaTag, FaCalculator, FaFolder, FaCheckSquare, FaCloud, FaGlobe, FaShoppingCart, FaChartPie } from "react-icons/fa";
+import { IoMdCheckmarkCircleOutline, IoIosLock, IoMdArrowDropdown } from "react-icons/io";
+import { FaCashRegister, FaChartLine, FaGift, FaStar, FaUsers, FaPlug, FaMobileAlt, FaBarcode, FaWarehouse, FaFileInvoice, FaHandshake, FaCalculator, FaCheckSquare, FaCloud } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
@@ -9,11 +9,51 @@ import { useState } from "react";
 export default function InflameInventory() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeTab, setActiveTab] = useState("tracking");
+  const [activeFaq, setActiveFaq] = useState(null);
 
   const slides = [
     { src: "/img/inventory.gif", alt: "Inflame Real-Time Tracking" },
     { src: "/img/inventory.jpg", alt: "Inflame Barcode Scanning Interface" },
     { src: "/img/inflame-analytics-dashboard.jpg", alt: "Inflame Analytics Dashboard" },
+  ];
+
+  const faqs = [
+    {
+      question: "What is Inflame Inventory Software?",
+      answer: "Inflame is a powerful inventory management solution that helps businesses track stock, manage orders, and optimize inventory operations.",
+    },
+    {
+      question: "Who can use this software?",
+      answer: "It’s ideal for retailers, wholesalers, distributors, manufacturers, and multi-store businesses many more in Bangladesh.",
+    },
+    {
+      question: "Is the software cloud-based?",
+      answer: "Yes, Inflame Inventory Software is cloud-based, allowing access anytime, anywhere in the world.",
+    },
+    {
+      question: "Does it support barcode scanning?",
+      answer: "Absolutely! It supports barcode generation and scanning for faster and more accurate inventory control.",
+    },
+    {
+      question: "Can it manage multiple warehouses?",
+      answer: "Yes, the software supports multi-location and multi-warehouse inventory management.",
+    },
+    {
+      question: "Is it integrated with accounting systems?",
+      answer: "Yes, it optimally integrates with accounting modules and external any systems for better financial tracking for businesses.",
+    },
+    {
+      question: "Does it offer reporting features?",
+      answer: "Yes, it includes detailed reports on stock levels, sales, purchases, and more.",
+    },
+    {
+      question: "Is the software customizable?",
+      answer: "Absolutely, modules and features can be tailored to your business needs.",
+    },
+    {
+      question: "What kind of support is available?",
+      answer: "Inflame offers full customer support, including training, live assistance, and regular updates.",
+    },
   ];
 
   const staggerContainer = {
@@ -65,6 +105,10 @@ export default function InflameInventory() {
     initial: { opacity: 0, x: 50 },
     animate: { opacity: 1, x: 0 },
     transition: { duration: 0.8, ease: "easeOut" },
+  };
+
+  const toggleFaq = (index) => {
+    setActiveFaq(activeFaq === index ? null : index);
   };
 
   return (
@@ -136,6 +180,7 @@ export default function InflameInventory() {
                 height={550}
                 style={{ objectFit: "contain" }}
                 className="hero-img"
+                onError={() => console.error("Failed to load hero image")}
               />
             </motion.div>
           </div>
@@ -144,8 +189,8 @@ export default function InflameInventory() {
           <span className="banner-text">
             Best Inventory Software in Bangladesh
           </span>
-          <Link href="/contact">
-            <span className="btn btn-secondary">Book a Demo</span>
+          <Link href="/contact" legacyBehavior>
+            <span className="btn btn-secondary">Book for Demo</span>
           </Link>
         </div>
 
@@ -186,25 +231,21 @@ export default function InflameInventory() {
                   title: "Purchase Order Management",
                   desc: "Streamline procurement with efficient PO workflows.",
                 },
-                
                 {
                   icon: <FaWarehouse />,
                   title: "Multi-Location Support",
                   desc: "Manage inventory across multiple warehouses seamlessly.",
                 },
-                
                 {
                   icon: <FaHandshake />,
                   title: "Supplier & Vendor Management",
                   desc: "Track and manage supplier relationships effectively.",
                 },
-                
                 {
                   icon: <FaCalculator />,
                   title: "Stock Valuation",
                   desc: "Calculate inventory value with accurate methods.",
                 },
-                
                 {
                   icon: <FaCheckSquare />,
                   title: "Inventory Audits & Adjustments",
@@ -283,6 +324,7 @@ export default function InflameInventory() {
                   height={450}
                   style={{ objectFit: "contain" }}
                   className="benefits-img"
+                  onError={() => console.error("Failed to load benefits image")}
                 />
               </motion.div>
               <div className="benefits-list">
@@ -455,22 +497,6 @@ export default function InflameInventory() {
                   </motion.div>
                 </motion.div>
               </div>
-
-              <Link href="/request-demo" legacyBehavior>
-                <motion.a
-                  className="btn btn-primary demo-request-btn"
-                  onClick={() => console.log("Request Demo clicked")}
-                  whileHover={{
-                    scale: 1.1,
-                    boxShadow: "0 8px 20px rgba(245, 158, 11, 0.4)",
-                  }}
-                  whileTap={{ scale: 0.95 }}
-                  animate={{ scale: [1, 1.03, 1] }}
-                  transition={{ repeat: Infinity, duration: 2 }}
-                >
-                  Request a Live Demo
-                </motion.a>
-              </Link>
             </motion.div>
 
             <motion.div
@@ -481,48 +507,46 @@ export default function InflameInventory() {
               viewport={{ once: true }}
             >
               <h4>Frequently Asked Questions</h4>
-              {[
-                {
-                  question: "What is Inflame Inventory Software?",
-                  answer: "Inflame is a powerful inventory management solution that helps businesses track stock, manage orders, and optimize inventory operations.",
-                },
-                {
-                  question: "Who can use this software?",
-                  answer: "It’s ideal for retailers, wholesalers, distributors, manufacturers, and multi-store businesses many more in Bangladesh.",
-                },
-                {
-                  question: "Is the software cloud-based?",
-                  answer: "Yes, Inflame Inventory Software is cloud-based, allowing access anytime, anywhere in the world.",
-                },
-                {
-                  question: "Does it support barcode scanning?",
-                  answer: "Absolutely! It supports barcode generation and scanning for faster and more accurate inventory control.",
-                },
-                {
-                  question: "Can it manage multiple warehouses?",
-                  answer: "Yes, the software supports multi-location and multi-warehouse inventory management.",
-                },
-                {
-                  question: "Is it integrated with accounting systems?",
-                  answer: "Yes, it optimally integrates with accounting modules and external any systems for better financial tracking for businesses.",
-                },
-                {
-                  question: "Does it offer reporting features?",
-                  answer: "Yes, it includes detailed reports on stock levels, sales, purchases, and more.",
-                },
-                {
-                  question: "Is the software customizable?",
-                  answer: "Absolutely, modules and features can be tailored to your business needs.",
-                },
-                {
-                  question: "What kind of support is available?",
-                  answer: "Inflame offers full customer support, including training, live assistance, and regular updates.",
-                },
-              ].map((faq, index) => (
-                <div key={index} className="faq-item">
-                  <h5>{faq.question}</h5>
-                  <p>{faq.answer}</p>
-                </div>
+              {faqs.map((faq, index) => (
+                <motion.div
+                  key={index}
+                  className="faq-item"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <motion.div
+                    className="faq-question"
+                    onClick={() => toggleFaq(index)}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    style={{ cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "space-between" }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <IoMdCheckmarkCircleOutline className="faq-icon" style={{ marginRight: "10px" }} />
+                      <h5>{faq.question}</h5>
+                    </div>
+                    <motion.div
+                      animate={{ rotate: activeFaq === index ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <IoMdArrowDropdown className="faq-dropdown-icon" />
+                    </motion.div>
+                  </motion.div>
+                  <AnimatePresence>
+                    {activeFaq === index && (
+                      <motion.div
+                        className="faq-answer"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <p>{faq.answer}</p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
               ))}
             </motion.div>
           </div>
@@ -582,111 +606,8 @@ export default function InflameInventory() {
           </div>
         </section>
 
-        {/* Pricing Section */}
-        {/* <section className="pricing section-padding" id="pricing">
-          <div className="container">
-            <motion.div
-              className="section-header"
-              variants={fadeIn}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true }}
-            >
-              <h2>Choose Your Inflame Plan</h2>
-              <p>Flexible pricing to suit your inventory management needs.</p>
-            </motion.div>
-            <div className="pricing-grid">
-              {[
-                {
-                  name: "Starter",
-                  price: "$29",
-                  features: [
-                    "Real-Time Inventory Tracking",
-                    "Barcode Scanning",
-                    "Stock Level Alerts",
-                    "1 Warehouse",
-                    "Email Support",
-                  ],
-                  link: "/pricing/starter",
-                  cta: "Get Started",
-                },
-                {
-                  name: "Growth",
-                  price: "$99",
-                  features: [
-                    "All Starter Features",
-                    "Purchase & Sales Order Management",
-                    "Multi-Location Support (Up to 5)",
-                    "Detailed Reporting",
-                    "E-Commerce Integration",
-                    "Priority Support",
-                  ],
-                  link: "/pricing/growth",
-                  cta: "Choose Growth",
-                  popular: true,
-                },
-                {
-                  name: "Enterprise",
-                  price: "Custom",
-                  features: [
-                    "All Growth Features",
-                    "Supplier & Vendor Management",
-                    "Batch & Serial Number Tracking",
-                    "Stock Valuation",
-                    "Inventory Audits",
-                    "Accounting & ERP Integration",
-                    "User Role Management",
-                    "Cloud & Mobile Access",
-                    
-                  ],
-                  link: "/contact",
-                  cta: "Contact Us",
-                },
-              ].map((plan, index) => (
-                <motion.div
-                  key={index}
-                  className={`pricing-card ${plan.popular ? "popular" : ""}`}
-                  variants={slideUp}
-                  initial="initial"
-                  whileInView="animate"
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.2 }}
-                  whileHover={{
-                    scale: 1.05,
-                    boxShadow: "0 20px 20px rgba(0,0,0,0.15)",
-                  }}
-                >
-                  {plan.popular && <span className="popular-badge">Most Popular</span>}
-                  <h3>{plan.name}</h3>
-                  <div className="price">
-                    {plan.price}
-                    {plan.price !== "Custom" && <span>/month</span>}
-                  </div>
-                  <ul>
-                    {plan.features.map((feature, i) => (
-                      <li key={i}>
-                        <IoMdCheckmarkCircleOutline className="check-icon" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <Link href={plan.link} legacyBehavior>
-                    <motion.a
-                      className={`btn ${plan.popular ? "btn-primary" : "btn-secondary"}`}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      {plan.cta}
-                    </motion.a>
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section> */}
-
         {/* CTA Section */}
-        <section className="cta section-padding">
+        {/* <section className="cta section-padding">
           <div className="container">
             <motion.div
               className="cta-content"
@@ -712,7 +633,7 @@ export default function InflameInventory() {
               </motion.a>
             </motion.div>
           </div>
-        </section>
+        </section> */}
       </div>
     </>
   );

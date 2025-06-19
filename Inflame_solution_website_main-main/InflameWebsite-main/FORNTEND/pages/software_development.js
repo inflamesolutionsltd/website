@@ -706,7 +706,7 @@ export default function LatexSoftware() {
         </section> */}
 
         {/* CTA Section */}
-        <section className="cta section-padding">
+        {/* <section className="cta section-padding">
           <div className="container">
             <motion.div
               className="cta-content"
@@ -732,7 +732,7 @@ export default function LatexSoftware() {
               </motion.a>
             </motion.div>
           </div>
-        </section>
+        </section> */}
       </div>
 
       {/* CSS for FAQ Dropdown */}
